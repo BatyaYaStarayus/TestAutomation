@@ -10,50 +10,23 @@ public class LanguagesTest extends GameActions {
 
     @Test
     public void googleTest() throws Exception {
-
         initializeDriver("Chrome");
-
         openAndMaximiseBrowser();
-
         getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
         loginAdminPage("netent", "netent");
-
         loginTesterPage("zrada", "");
 
-
-        for (int i = 0; i < languagesArray.length; i++){
-
-            selectLanguage(languagesArray[i]);
-
-//        Thread.sleep(5000);
-
+        for (String aLanguagesArray : LANGUAGES) {
+            selectLanguage(aLanguagesArray);
             runGame("neonstaxx_not_mobile");
-
             waitGameLoaded();
-
-//        clickToDisableSounds();
-//
-//        clickToEnableSounds();
-
             clickButtonFSS(850, 850);
-
-//        findInCurrency("balanceInCurrency");
-//
-//        clickSpinButton(850,820);
-//
-//        waitReelsStopped();
-
+            clickSpinButton(850, 820);
+            enteringIdleState();
             clickButtonWithId("gameRulesButton");
-
             getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
         }
 
-//        findInCurrency("balanceInCurrency");
-
         logoutTesterPage();
-
-
     }
 }
