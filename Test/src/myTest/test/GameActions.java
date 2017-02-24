@@ -13,8 +13,9 @@ import java.util.Map;
 
 public class GameActions extends PagesActions {
 
-    private Map<String, String> eventsMap = new HashMap<String, String>();
-    private Map<String, String> gettersMap = new HashMap<String, String>();
+    private static final int TIMEOUT = 1000;
+    private Map<String, String> eventsMap = new HashMap<>();
+    private Map<String, String> gettersMap = new HashMap<>();
 
     public GameActions() {
         super();
@@ -27,11 +28,6 @@ public class GameActions extends PagesActions {
         String rezult = "";
         String eventName = eventsMap.get(eventKey);
 
-        JavascriptExecutor js = null;
-        if (driver instanceof JavascriptExecutor) {
-            js = (JavascriptExecutor) driver;
-        } // else throw...
-
         js.executeScript("window.TEST_EVENT_FIRED = false;" +
                 "window.TEST_EVENT = new Sys.Observable();" +
                 "window.TEST_EVENT.addListener('" + eventName + "', " +
@@ -41,23 +37,30 @@ public class GameActions extends PagesActions {
                 "});");
 
 
-        while (!(rezult == "true")) {
+        while (!("true".equals(rezult))) {
             rezult = js.executeScript("return window.TEST_EVENT_FIRED").toString();
-            Thread.sleep(100);
         }
     }
 
-    public void waitGameLoaded() throws Exception {
+    protected void waitGameLoaded() throws Exception {
 
         this.waitFor("gameLoaded");
 
     }
 
-    public void waitReelsStopped() throws Exception {
+    protected void waitReelsStopped() throws Exception {
 
         this.waitFor("reelsAnimationStopped");
 
     }
+
+    protected void enteringIdleState() throws Exception {
+
+        this.waitFor("enteringIdleState");
+
+    }
+
+
 
     private void initEventsMap() {
 
@@ -71,6 +74,8 @@ public class GameActions extends PagesActions {
         eventsMap.put("enteringFeatureSplashState", "notify:stateHandler.enteringFeatureSplashState");
         eventsMap.put("spinAnimationComplete", "notify:spin.spinAnimationComplete");
         eventsMap.put("showingDialog", "notify.dialogWindow.showingDialog");
+        eventsMap.put("enteringIdleState", "notify:stateHandler.enteringIdleState");
+
 
     }
 
@@ -88,7 +93,7 @@ public class GameActions extends PagesActions {
 
         WebElement buttonWithId = driver.findElement(By.id(id));
         buttonWithId.click();
-        Thread.sleep(1000);
+        Thread.sleep(TIMEOUT);
 
     }
 
@@ -96,7 +101,7 @@ public class GameActions extends PagesActions {
 
         WebElement disabledSoundsButton = driver.findElement(By.className("interface-soundSettings_audioOff_icon_uri"));
         disabledSoundsButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(TIMEOUT);
 
     }
 
@@ -104,7 +109,7 @@ public class GameActions extends PagesActions {
 
         WebElement enabledSoundsButton = driver.findElement(By.className("interface-soundSettings_audioOn_icon_uri"));
         enabledSoundsButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(TIMEOUT);
 
     }
 
@@ -138,11 +143,6 @@ public class GameActions extends PagesActions {
 
         String result;
         String eventName = gettersMap.get(eventKey);
-
-        JavascriptExecutor js = null;
-        if (driver instanceof JavascriptExecutor) {
-            js = (JavascriptExecutor) driver;
-        } // else throw...
 
         result = js.executeScript("return " + eventName).toString();
 
@@ -184,11 +184,9 @@ public class GameActions extends PagesActions {
         loginTesterPage("zrada", "");
 
 
-        for (int i = 0; i < languagesArray.length; i++){
+        for (int i = 0; i < LANGUAGES.length; i++){
 
-            selectLanguage(languagesArray[i]);
-
-            Thread.sleep(5000);
+            selectLanguage(LANGUAGES[i]);
 
             runGame("neonstaxx_not_mobile");
 
