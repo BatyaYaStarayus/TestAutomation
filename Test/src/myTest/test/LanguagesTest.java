@@ -21,8 +21,10 @@ public class LanguagesTest extends GameActions {
             runGame("neonstaxx_not_mobile");
             waitGameLoaded();
             clickButtonFSS(850, 850);
+//            getBalanceAfterSpin();
             clickSpinButton(850, 820);
             enteringIdleState();
+//            getBalanceInCurrency();
             clickButtonWithId("gameRulesButton");
             getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
         }

@@ -1,6 +1,5 @@
 package myTest.test;
 
-import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
@@ -39,6 +38,8 @@ public class GameActions extends PagesActions {
 
         while (!("true".equals(rezult))) {
             rezult = js.executeScript("return window.TEST_EVENT_FIRED").toString();
+            Thread.sleep(TIMEOUT);
+
         }
     }
 
@@ -139,7 +140,7 @@ public class GameActions extends PagesActions {
 
     }
 
-    protected int findInCurrency(String eventKey) throws Exception {
+    protected int getInCurrency(String eventKey) throws Exception {
 
         String result;
         String eventName = gettersMap.get(eventKey);
@@ -152,70 +153,30 @@ public class GameActions extends PagesActions {
 
         }
 
-    protected void findBetInCurrency () throws Exception {
+    protected int getBetInCurrency() throws Exception {
 
-        findInCurrency("betInCurrency");
-
-    }
-
-    protected void findBalanceInCurrency () throws Exception {
-
-        findInCurrency("balanceInCurrency");
+        return getInCurrency("betInCurrency");
 
     }
 
-    protected void findWinInCurrency () throws Exception {
+    protected int getBalanceInCurrency() throws Exception {
 
-        findInCurrency("winInCurrency");
+        return getInCurrency("balanceInCurrency");
+
+    }
+
+    protected int getWinInCurrency() throws Exception {
+
+        return getInCurrency("winInCurrency");
 
     }
 
-    @Test
-    public void googleTest() throws Exception {
+    protected int getBalanceAfterSpin() throws Exception {
 
-        initializeDriver("Chrome");
-
-        openAndMaximiseBrowser();
-
-        getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
-        loginAdminPage("netent", "netent");
-
-        loginTesterPage("zrada", "");
-
-
-        for (int i = 0; i < LANGUAGES.length; i++){
-
-            selectLanguage(LANGUAGES[i]);
-
-            runGame("neonstaxx_not_mobile");
-
-            waitGameLoaded();
-
-            clickToDisableSounds();
-
-            clickToEnableSounds();
-
-            clickButtonFSS(850, 850);
-
-            findInCurrency("balanceInCurrency");
-
-            clickSpinButton(850,820);
-
-            waitReelsStopped();
-
-            clickButtonWithId("gameRulesButton");
-
-            getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
-        }
-
-        findInCurrency("balanceInCurrency");
-
-        logoutTesterPage();
-
+        return (getBalanceInCurrency() - getBetInCurrency());
 
     }
+
 
 }
 

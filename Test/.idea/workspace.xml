@@ -16,13 +16,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BasicBrowserActions.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BasicBrowserActions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/myTest/test/BasicBrowserActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="-172">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#461#462#0" expanded="true" />
                 <element signature="e#1378#1379#0" expanded="true" />
                 <element signature="e#1429#1430#0" expanded="true" />
               </folding>
@@ -33,11 +34,10 @@
       <file leaf-file-name="GameActions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/myTest/test/GameActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="95" column="14" lean-forward="false" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="14" />
+            <state relative-caret-position="440">
+              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#googleTest#0;class#GameActions#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,8 +46,8 @@
       <file leaf-file-name="PagesActions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/myTest/test/PagesActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-214">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="383">
+              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LanguagesTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LanguagesTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/myTest/test/LanguagesTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -104,8 +104,8 @@
         <option value="$PROJECT_DIR$/src/myTest/test/BasicActions.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/myTest/test/PagesActions.java" />
-        <option value="$PROJECT_DIR$/src/myTest/test/GameActions.java" />
         <option value="$PROJECT_DIR$/src/myTest/test/BasicBrowserActions.java" />
+        <option value="$PROJECT_DIR$/src/myTest/test/GameActions.java" />
         <option value="$PROJECT_DIR$/src/myTest/test/LanguagesTest.java" />
       </list>
     </option>
@@ -555,34 +555,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GameActions_googleTest - 2017.02.24 at 13h 12m 59s.xml">
-      <configuration name="GameActions.googleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameActions_googleTest - 2017.02.24 at 13h 13m 55s.xml">
-      <configuration name="GameActions.googleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameActions_googleTest - 2017.02.24 at 13h 19m 20s.xml">
-      <configuration name="GameActions.googleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameActions_googleTest - 2017.02.24 at 13h 22m 50s.xml">
-      <configuration name="GameActions.googleTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LanguagesTest - 2017.02.24 at 15h 03m 05s.xml">
+    <history-entry file="LanguagesTest - 2017.02.24 at 17h 40m 23s.xml">
       <configuration name="LanguagesTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LanguagesTest - 2017.02.24 at 15h 35m 26s.xml">
-      <configuration name="LanguagesTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 15h 34m 15s.xml">
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 29m 30s.xml">
       <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 15h 59m 37s.xml">
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 30m 20s.xml">
       <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 16h 07m 29s.xml">
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 31m 40s.xml">
       <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 16h 33m 46s.xml">
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 39m 16s.xml">
+      <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 41m 11s.xml">
+      <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 47m 42s.xml">
+      <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 55m 12s.xml">
+      <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 56m 56s.xml">
+      <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LanguagesTest_googleTest - 2017.02.24 at 17h 59m 18s.xml">
       <configuration name="LanguagesTest.googleTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -641,7 +641,7 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="29" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -944,10 +944,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/myTest/test/BasicBrowserActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-172">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#1378#1379#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/myTest/test/PagesActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-214">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="383">
+          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/myTest/test/GameActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -956,32 +979,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/myTest/test/LanguagesTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/myTest/test/GameActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="95" column="14" lean-forward="false" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#googleTest#0;class#GameActions#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/myTest/test/BasicBrowserActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1378#1379#0" expanded="true" />
-            <element signature="e#1429#1430#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
