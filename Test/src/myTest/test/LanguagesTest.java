@@ -10,7 +10,7 @@ public class LanguagesTest extends GameActions {
 
     @Test
     public void googleTest() throws Exception {
-        initializeDriver("Chrome");
+        initializeDesktopDriver("Chrome");
         openAndMaximiseBrowser();
         getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
         loginAdminPage("netent", "netent");

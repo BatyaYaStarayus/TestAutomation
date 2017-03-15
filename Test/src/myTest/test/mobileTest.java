@@ -17,9 +17,11 @@ public class mobileTest extends GameActions {
         loginAdminPage("netent", "netent");
         loginTesterPage("zrada", "");
         runGame("neonstaxx_not_mobile");
-        waitSpinButtonIsClickableMobile();
+        waitGameLoaded();
+        getBetInCurrency();
         clickSpinButton(210, 430);
-        waitSpinButtonIsClickableMobile();
+        enteringIdleState();
+        getBalanceInCurrency();
         getPage("http://sta-all-kiv-gt4-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
 
     }
