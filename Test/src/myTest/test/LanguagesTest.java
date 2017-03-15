@@ -16,15 +16,15 @@ public class LanguagesTest extends GameActions {
         loginAdminPage("netent", "netent");
         loginTesterPage("zrada", "");
 
-        for (String aLanguagesArray : LANGUAGES) {
-            selectLanguage(aLanguagesArray);
+        for (String allLanguagesArray : LANGUAGES) {
+            selectLanguage(allLanguagesArray);
             runGame("neonstaxx_not_mobile");
             waitGameLoaded();
             clickButtonFSS(850, 850);
-//            getBalanceAfterSpin();
+            getBalanceAfterSpin();
             clickSpinButton(850, 820);
             enteringIdleState();
-//            getBalanceInCurrency();
+            getBalanceInCurrency();
             clickButtonWithId("gameRulesButton");
             getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
         }

@@ -2,6 +2,9 @@ package myTest.test;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +15,7 @@ import java.util.Map;
 
 public class GameActions extends PagesActions {
 
-    private static final int TIMEOUT = 1000;
+    protected static final int TIMEOUT = 1000;
     private Map<String, String> eventsMap = new HashMap<>();
     private Map<String, String> gettersMap = new HashMap<>();
 
@@ -49,6 +52,13 @@ public class GameActions extends PagesActions {
 
     }
 
+    protected void waitSpinButtonIsClickableMobile() {
+
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement spinButtonMobile = wait.until(ExpectedConditions.elementToBeClickable(By.id("spinButton")));
+
+    }
+
     protected void waitReelsStopped() throws Exception {
 
         this.waitFor("reelsAnimationStopped");
@@ -60,8 +70,6 @@ public class GameActions extends PagesActions {
         this.waitFor("enteringIdleState");
 
     }
-
-
 
     private void initEventsMap() {
 
@@ -173,7 +181,12 @@ public class GameActions extends PagesActions {
 
     protected int getBalanceAfterSpin() throws Exception {
 
-        return (getBalanceInCurrency() - getBetInCurrency());
+        int balanceInCurrency = getBalanceInCurrency();
+        int betInCurrency = getBetInCurrency();
+
+        int balanceAfterSpin = balanceInCurrency - betInCurrency;
+
+        return balanceAfterSpin;
 
     }
 
