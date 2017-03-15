@@ -1,8 +1,10 @@
 package myTest.test;
 
-import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +15,7 @@ import java.util.Map;
 
 public class GameActions extends PagesActions {
 
-    private static final int TIMEOUT = 1000;
+    protected static final int TIMEOUT = 1000;
     private Map<String, String> eventsMap = new HashMap<>();
     private Map<String, String> gettersMap = new HashMap<>();
 
@@ -39,12 +41,21 @@ public class GameActions extends PagesActions {
 
         while (!("true".equals(rezult))) {
             rezult = js.executeScript("return window.TEST_EVENT_FIRED").toString();
+            Thread.sleep(TIMEOUT);
+
         }
     }
 
     protected void waitGameLoaded() throws Exception {
 
         this.waitFor("gameLoaded");
+
+    }
+
+    protected void waitSpinButtonIsClickableMobile() {
+
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement spinButtonMobile = wait.until(ExpectedConditions.elementToBeClickable(By.id("spinButton")));
 
     }
 
@@ -59,8 +70,6 @@ public class GameActions extends PagesActions {
         this.waitFor("enteringIdleState");
 
     }
-
-
 
     private void initEventsMap() {
 
@@ -139,7 +148,7 @@ public class GameActions extends PagesActions {
 
     }
 
-    protected int findInCurrency(String eventKey) throws Exception {
+    protected int getInCurrency(String eventKey) throws Exception {
 
         String result;
         String eventName = gettersMap.get(eventKey);
@@ -152,70 +161,35 @@ public class GameActions extends PagesActions {
 
         }
 
-    protected void findBetInCurrency () throws Exception {
+    protected int getBetInCurrency() throws Exception {
 
-        findInCurrency("betInCurrency");
-
-    }
-
-    protected void findBalanceInCurrency () throws Exception {
-
-        findInCurrency("balanceInCurrency");
+        return getInCurrency("betInCurrency");
 
     }
 
-    protected void findWinInCurrency () throws Exception {
+    protected int getBalanceInCurrency() throws Exception {
 
-        findInCurrency("winInCurrency");
+        return getInCurrency("balanceInCurrency");
+
+    }
+
+    protected int getWinInCurrency() throws Exception {
+
+        return getInCurrency("winInCurrency");
 
     }
 
-    @Test
-    public void googleTest() throws Exception {
+    protected int getBalanceAfterSpin() throws Exception {
 
-        initializeDriver("Chrome");
+        int balanceInCurrency = getBalanceInCurrency();
+        int betInCurrency = getBetInCurrency();
 
-        openAndMaximiseBrowser();
+        int balanceAfterSpin = balanceInCurrency - betInCurrency;
 
-        getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
-        loginAdminPage("netent", "netent");
-
-        loginTesterPage("zrada", "");
-
-
-        for (int i = 0; i < LANGUAGES.length; i++){
-
-            selectLanguage(LANGUAGES[i]);
-
-            runGame("neonstaxx_not_mobile");
-
-            waitGameLoaded();
-
-            clickToDisableSounds();
-
-            clickToEnableSounds();
-
-            clickButtonFSS(850, 850);
-
-            findInCurrency("balanceInCurrency");
-
-            clickSpinButton(850,820);
-
-            waitReelsStopped();
-
-            clickButtonWithId("gameRulesButton");
-
-            getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-
-        }
-
-        findInCurrency("balanceInCurrency");
-
-        logoutTesterPage();
-
+        return balanceAfterSpin;
 
     }
+
 
 }
 
