@@ -28,7 +28,19 @@ public class BasicBrowserActions {
         driver.close();
     }
 
-    protected void initializeDriver(String browser) {
+//    Initializing Drivers and jsExecutor
+
+    protected void initializeJSExecutor() {
+
+        if (driver instanceof JavascriptExecutor) {
+            js = (JavascriptExecutor) driver;
+        }else{
+            throw new ClassCastException("Driver is not an instance of JavascriptExecutor");
+        }
+
+    }
+
+    protected void initializeDesktopDriver(String browser) {
         switch (browser) {
             case "Chrome":
                 System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
@@ -50,12 +62,24 @@ public class BasicBrowserActions {
                 throw new IllegalArgumentException("Wrong browser");
         }
 
-        if (driver instanceof JavascriptExecutor) {
-            js = (JavascriptExecutor) driver;
-        }else{
-            throw new ClassCastException("Driver is not an instance of JavascriptExecutor");
-        }
+        initializeJSExecutor();
+
     }
+
+    protected void initializeMobileDriver () {
+
+        mobileEmulation.put("deviceName", "Google Nexus 6");
+        chromeOptions.put("mobileEmulation", mobileEmulation);
+        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
+        capabilities = DesiredCapabilities.chrome();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+        this.driver = new ChromeDriver(capabilities);
+
+        initializeJSExecutor();
+
+    }
+
+//    Browser actions
 
     protected void openAndMaximiseBrowser() {
         driver.manage().window().maximize();
@@ -65,28 +89,9 @@ public class BasicBrowserActions {
         driver.get(pageURL);
     }
 
-    protected void devicesForEmulation() {
-
-        mobileEmulation.put("deviceName", "Google Nexus 6");
-
-    }
-
-    protected void setChromeOptions() {
-
-        chromeOptions.put("mobileEmulation", mobileEmulation);
-
-    }
-
-    protected void initializeMobileDriver () {
-
-        devicesForEmulation();
-        setChromeOptions();
-        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
-        capabilities = DesiredCapabilities.chrome();
-        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        this.driver = new ChromeDriver(capabilities);
-
-    }
-
+//    @TODO try more than 1 device
+//    protected void devicesForEmulation() {
+//        mobileEmulation.put("deviceName", "Google Nexus 6");
+//    }
 
 }
