@@ -8,7 +8,6 @@ import org.junit.Test;
 public class mobileTest extends GameActions {
 
     @Test
-
     public void myMobileTest() throws Exception{
 
         initializeMobileDriver();
