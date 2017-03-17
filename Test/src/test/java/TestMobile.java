@@ -23,7 +23,7 @@ public class TestMobile extends GameActions {
         enteringIdleState();
         getBalanceInCurrency();
         getPage();
-
+// sdsad
     }
 
 }

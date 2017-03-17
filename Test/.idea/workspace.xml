@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/TestMobile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,8 +116,8 @@
         <option value="$PROJECT_DIR$/src/main/java/GameActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/BasicBrowserActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/PagesActions.java" />
-        <option value="$PROJECT_DIR$/src/test/java/TestMobile.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestLanguages.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestMobile.java" />
       </list>
     </option>
   </component>
@@ -645,7 +645,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1011,7 +1011,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/TestMobile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
