@@ -1,5 +1,7 @@
 package main.java;
 
+import org.apache.commons.io.serialization.ValidatingObjectInputStream;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -44,6 +46,7 @@ public class GameActions extends PagesActions {
             Thread.sleep(TIMEOUT);
 
         }
+
     }
 
     protected void waitGameLoaded() throws Exception {
@@ -126,6 +129,45 @@ public class GameActions extends PagesActions {
 
         WebElement enabledGameRulesButton = driver.findElement(By.className("interface-gameRules_icon_uri"));
         enabledGameRulesButton.click();
+
+    }
+
+    protected void startAutoplay(int roundsAmount) {
+
+        String roundsAmountString = Integer.toString(roundsAmount);
+        WebElement roundsAmountButton = driver.findElement(By.id(roundsAmountString));
+        roundsAmountButton.click();
+
+    }
+
+    protected void verifyAutoplayRoundsAmountDecreased(int roundsAmount) throws Exception {
+
+        for (int i = (roundsAmount - 1); i > 0; i--) {
+
+            WebElement spinsAmountField = driver.findElement(By.id("autoplayStopControlsSpinsCounter"));
+            int spinsLeft = Integer.parseInt(spinsAmountField.getText());
+            System.out.println(i);
+            System.out.println(spinsLeft);
+            Assert.assertTrue(i == spinsLeft);
+            waitFor("enteringIdleState");
+
+        }
+
+    }
+
+    protected void autoplayAndVerification(int roundsAmount) throws Exception {
+
+        startAutoplay(roundsAmount);
+        verifyAutoplayRoundsAmountDecreased(roundsAmount);
+
+    }
+
+
+    protected void closeMessage() {
+
+        //    WebElement popUp = driver.findElement(By.id("dialogWindowContainer"));
+        WebElement continueButton = driver.findElement(By.xpath("//*[@value='Continue']"));
+        continueButton.click();
 
     }
 

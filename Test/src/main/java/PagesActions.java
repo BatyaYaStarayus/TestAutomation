@@ -1,6 +1,7 @@
 package main.java;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -15,6 +16,9 @@ import org.w3c.dom.html.HTMLInputElement;
 public class PagesActions extends BasicBrowserActions {
 
     public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
+
+//    public String[] gamesId = System.getProperty("GameId").split(",");
+    public String[] gamesId = {"neonstaxx_not_mobile"};
 
 //    admin page actions
 
@@ -60,11 +64,12 @@ public class PagesActions extends BasicBrowserActions {
 
     }
 
-    protected void runGame() {
+    protected void runGame(String gameId) {
 
-        String gameId = System.getProperty("GameId");
         WebElement game = driver.findElement(By.xpath("//*[.='" + gameId + "']"));
         game.click();
+
+       //TODO Assert.assertEquals(gameName, driver.getTitle());
 
     }
 
