@@ -4,14 +4,15 @@ import main.java.GameActions;
 import org.junit.Test;
 
 /**
- * Created by ivan.kozlov on 15.03.2017.
+ * Created by ivan.kozlov on 20.03.2017.
  */
-public class TestMobile extends GameActions {
+public class TestAutoplay extends GameActions {
 
     @Test
-    public void myMobileTest() throws Exception{
 
-        initializeMobileDriver();
+    public void autoplayTest() throws Exception {
+
+        initializeDesktopDriver("Chrome");
         openAndMaximiseBrowser();
         getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
         loginAdminPage("netent", "netent");
@@ -20,11 +21,13 @@ public class TestMobile extends GameActions {
         for (String gameId : gamesId) {
             runGame(gameId);
             waitGameLoaded();
-            getBetInCurrency();
-            clickSpinButton(210, 430);
+            clickButtonFSS(850, 850);
+            clickButtonWithId("autoplaySettingsSettingsButton");
+            autoplayAndVerification(10);
             enteringIdleState();
-            getBalanceInCurrency();
-            getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+            openGameRules();
+            Thread.sleep(TIMEOUT);
+
         }
 
     }
