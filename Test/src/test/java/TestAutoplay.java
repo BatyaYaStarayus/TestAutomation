@@ -14,7 +14,7 @@ public class TestAutoplay extends GameActions {
 
         initializeDesktopDriver("Chrome");
         openAndMaximiseBrowser();
-        getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+        getPage();
         loginAdminPage("netent", "netent");
         loginTesterPage("zrada", "");
 
@@ -22,7 +22,7 @@ public class TestAutoplay extends GameActions {
             runGame(gameId);
             waitGameLoaded();
             clickButtonFSS(850, 850);
-            clickButtonWithId("autoplaySettingsSettingsButton");
+            openAutoplaySettings();
             autoplayAndVerification(10);
             enteringIdleState();
             openGameRules();

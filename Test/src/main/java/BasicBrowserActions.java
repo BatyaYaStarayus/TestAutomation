@@ -98,9 +98,9 @@ public class BasicBrowserActions {
         driver.manage().window().maximize();
     }
 
-    protected void getPage(String pageURL) throws InterruptedException {
+    protected void getPage() throws InterruptedException {
 
-//        String pageURL = System.getProperty("Environment");
+        String pageURL = System.getProperty("Environment");
         driver.get(pageURL);
 
     }
