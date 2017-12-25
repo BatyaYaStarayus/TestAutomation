@@ -13,7 +13,7 @@ public class TestMobile extends GameActions {
 
         initializeMobileDriver();
         openAndMaximiseBrowser();
-        getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+        getPage();
         loginAdminPage("netent", "netent");
         loginTesterPage("zrada", "");
 
@@ -24,7 +24,7 @@ public class TestMobile extends GameActions {
             clickSpinButton(210, 430);
             enteringIdleState();
             getBalanceInCurrency();
-            getPage("http://sta-kiv-gt2-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+            getPage();
         }
 
     }

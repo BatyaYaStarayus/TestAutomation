@@ -17,7 +17,6 @@ import java.util.Map;
 
 public class GameActions extends PagesActions {
 
-    protected static final int TIMEOUT = 1000;
     private Map<String, String> eventsMap = new HashMap<>();
     private Map<String, String> gettersMap = new HashMap<>();
 
@@ -29,7 +28,7 @@ public class GameActions extends PagesActions {
 
     public void waitFor(String eventKey) throws Exception {
 
-        String rezult = "";
+        String result = "";
         String eventName = eventsMap.get(eventKey);
 
         js.executeScript("window.TEST_EVENT_FIRED = false;" +
@@ -41,8 +40,8 @@ public class GameActions extends PagesActions {
                 "});");
 
 
-        while (!("true".equals(rezult))) {
-            rezult = js.executeScript("return window.TEST_EVENT_FIRED").toString();
+        while (!("true".equals(result))) {
+            result = js.executeScript("return window.TEST_EVENT_FIRED").toString();
             Thread.sleep(TIMEOUT);
 
         }
@@ -59,12 +58,6 @@ public class GameActions extends PagesActions {
 
         WebDriverWait wait = new WebDriverWait(driver,10);
         WebElement spinButtonMobile = wait.until(ExpectedConditions.elementToBeClickable(By.id("spinButton")));
-
-    }
-
-    protected void waitReelsStopped() throws Exception {
-
-        this.waitFor("reelsAnimationStopped");
 
     }
 
@@ -101,14 +94,6 @@ public class GameActions extends PagesActions {
 
     }
 
-    protected void clickButtonWithId (String id) throws InterruptedException {
-
-        WebElement buttonWithId = driver.findElement(By.id(id));
-        buttonWithId.click();
-        Thread.sleep(TIMEOUT);
-
-    }
-
     protected void clickToEnableSounds () throws InterruptedException {
 
         WebElement disabledSoundsButton = driver.findElement(By.className("interface-soundSettings_audioOff_icon_uri"));
@@ -129,6 +114,30 @@ public class GameActions extends PagesActions {
 
         WebElement enabledGameRulesButton = driver.findElement(By.className("interface-gameRules_icon_uri"));
         enabledGameRulesButton.click();
+
+    }
+
+    protected void openAutoplaySettings () {
+
+        // action
+        WebElement autoplayButton = driver.findElement(By.id("autoplaySettingsSettingsButton"));
+        autoplayButton.click();
+
+        // verification
+        WebElement autoplaySettingsBlock = driver.findElement(By.id("autoplaySettings"));
+        Assert.assertEquals(true, autoplaySettingsBlock.isDisplayed());
+
+    }
+
+    protected void openGameSettings () {
+
+        // action
+        WebElement gameSettingsButton = driver.findElement(By.id("gameSettingsSettingsButton"));
+        gameSettingsButton.click();
+
+        // verification
+        WebElement gameSettingsBlock = driver.findElement(By.id("gameSettings"));
+        Assert.assertEquals(true, gameSettingsBlock.isDisplayed());
 
     }
 

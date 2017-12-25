@@ -1,24 +1,35 @@
 package main.java;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.w3c.dom.html.HTMLInputElement;
+import org.openqa.selenium.TakesScreenshot;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by ivan.kozlov on 21.02.2017.
  */
 public class PagesActions extends BasicBrowserActions {
 
+    // TODO
+//    public String SRC = ""
+    protected static final int TIMEOUT = 1000;
+
     public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
 
-//    public String[] gamesId = System.getProperty("GameId").split(",");
-    public String[] gamesId = {"neonstaxx_not_mobile"};
+    public String[] gamesId = System.getProperty("GameId").split(",");
+//    public String[] gamesId = {"neonstaxx_not_mobile"};
 
 //    admin page actions
 
@@ -80,6 +91,25 @@ public class PagesActions extends BasicBrowserActions {
         Select selectLanguage = new Select(languageDropDownList);
         selectLanguage.selectByValue(language);
 
+    }
+
+    protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
+        Thread.sleep(TIMEOUT);
+        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile, new File("C://Screenshots/" + Arrays.toString(gamesId) + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
+    }
+
+    protected String getCurrentLanguage() {
+        String url = driver.getCurrentUrl();
+        String[] urlParametersArray = url.split("&");
+        String currentLanguage = "";
+
+        for (int i = 0; i < urlParametersArray.length; i++) {
+            if (urlParametersArray[i].startsWith("lang")) {
+                currentLanguage = urlParametersArray[i].substring(urlParametersArray[i].length() - 2);
+            }
+        }
+        return currentLanguage;
     }
 
 }
