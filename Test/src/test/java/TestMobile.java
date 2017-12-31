@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by ivan.kozlov on 15.03.2017.
  */
-public class TestMobile extends GameActions {
+public class TestMobile extends JMXActions {
 
     @Test
     public void myMobileTest() throws Exception{

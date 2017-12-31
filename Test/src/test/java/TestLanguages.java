@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by ivan.kozlov on 24.02.2017.
  */
-public class TestLanguages extends GameActions {
+public class TestLanguages extends JMXActions {
 
     @Test
     public void languagesTest() throws Exception {
@@ -21,14 +21,35 @@ public class TestLanguages extends GameActions {
             for (String gameId : gamesId) {
                 runGame(gameId);
                 waitGameLoaded();
-                makeScreenShot("FSS");
+
+//                TODO insert variables into next function
+                changePagesAndMakeScreenShots();
+
                 clickButtonFSS(850, 850);
                 makeScreenShot("Keypad");
-                clickSpinButton(850, 820);
-                enteringIdleState();
-                getBalanceInCurrency();
-                openGameRules();
-                //getPage("http://sta-all-kiv-gt5-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+
+                openGameSettings();
+                makeScreenShot("GameSettings");
+
+                openAutoplaySettings();
+                makeScreenShot("Autoplay");
+
+                openAdvancedAutoplaySettings();
+                makeScreenShot("AutoplayAdvanced");
+
+                openPaytable();
+//                TODO insert variables into next function
+                changePagesAndMakeScreenShots();
+
+//                TODO add FS + Wild button Id
+                openJMX();
+                clickOnButton();
+                closeJMX();
+                clickSpinButton();
+
+
+
+
                 driver.navigate().back();
             }
         }
