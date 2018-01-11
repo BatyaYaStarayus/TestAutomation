@@ -15,7 +15,7 @@ public class TestLanguages extends JMXActions {
         openAndMaximiseBrowser();
         getPage();
         loginAdminPage("netent", "netent");
-        loginTesterPage("zrada", "");
+        loginTesterPage("stest6", "");
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
