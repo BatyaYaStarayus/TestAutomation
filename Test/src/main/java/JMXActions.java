@@ -7,12 +7,12 @@ public class JMXActions extends GameActions {
 
     protected void openJMX () throws InterruptedException {
 //TODO insert JMX button id
-        WebElement JMXButton = driver.findElement(By.className("interface-soundSettings_audioOff_icon_uri"));
+        WebElement JMXButton = driver.findElement(By.className("JMXHandle"));
         JMXButton.click();
         Thread.sleep(TIMEOUT); 
     }
     
-    protected void clickOnButton(String buttonId) throws InterruptedException {
+    protected void clickOnJMXButton(String buttonId) throws InterruptedException {
 
         WebElement button = driver.findElement(By.className(buttonId));
         button.click();
@@ -20,10 +20,17 @@ public class JMXActions extends GameActions {
     }
     
     protected void closeJMX () throws InterruptedException {
-        //TODO insert close JMX button id
-        WebElement closeJMXButton = driver.findElement(By.className("interface-soundSettings_audioOff_icon_uri"));
+        WebElement closeJMXButton = driver.findElement(By.className("JMXClose"));
         closeJMXButton.click();
         Thread.sleep(TIMEOUT);
+    }
+
+    protected void setJMXOnFReeSpins () throws InterruptedException {
+
+        WebElement closeJMXButton = driver.findElement(By.className("JMXClose"));
+        closeJMXButton.click();
+        Thread.sleep(TIMEOUT);
+
     }
 
 }

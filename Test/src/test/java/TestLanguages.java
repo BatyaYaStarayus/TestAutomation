@@ -1,6 +1,5 @@
 package test.java;
 
-import main.java.GameActions;
 import main.java.JMXActions;
 import org.junit.Test;
 
@@ -23,7 +22,6 @@ public class TestLanguages extends JMXActions {
                 runGame(gameId);
                 waitGameLoaded();
 
-//                TODO insert variables into next function
                 changePagesAndMakeScreenShots("FSS", 798, 673, 3, 35);
 
                 clickButtonFSS(959, 801);
@@ -41,14 +39,13 @@ public class TestLanguages extends JMXActions {
                 closeAutoplaySettings();
 
                 openPaytable(132, 863);
-//                TODO insert variables into next function
                 changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
 //                TODO add FS + Wild button Id
-//                openJMX();
-//                clickOnButton();
-//                closeJMX();
-//                clickSpinButton();
+                openJMX();
+                clickOnJMXButton("JMXFreespins");
+                closeJMX();
+                clickSpinButton(959, 863);
 
 
 
