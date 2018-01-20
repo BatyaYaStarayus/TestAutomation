@@ -47,8 +47,7 @@ public class TestLanguages extends JMXActions {
                 closeGameRules();
 
                 openJMX();
-
-//              TODO add FS + Wild button Id to clickOnJMXButton(); method
+//              TODO add FS + Wild button Id to setJMXOn(); method
                 clickOnJMXButton();
                 closeJMX();
                 clickSpinButton(959, 863);
@@ -65,9 +64,47 @@ public class TestLanguages extends JMXActions {
                 waitFSIntroAppears();
                 makeScreenShot("FSIntrorestored");
 
+                openJMX();
+                setOneFreeSpinLeft();
+//                TODO need to fill with JMXNoWin button id in method below
+                clickOnJMXButton("JMXNoWin");
+                closeJMX();
+                clickFSIntroButton();
+//                TODO need to fill with event of FS Intro disappears in method below
+                waitFor();
+                makeScreenShot("FSKeypad");
 
+                waitFSOutoAppears();
+                makeScreenShot("FSOutroNoWin");
 
+                enteringIdleState();
 
+                openJMX();
+                setJMXOn("JMXBigWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Big Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("BigWin");
+                enteringIdleState();
+
+                openJMX();
+                setJMXOn("JMXMegaWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Mega Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("MegaWin");
+                enteringIdleState();
+
+                openJMX();
+                setJMXOn("JMXSuperMegaWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Super Mega Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("SuperMegaWin");
+                enteringIdleState();
 
                 driver.navigate().back();
             }
