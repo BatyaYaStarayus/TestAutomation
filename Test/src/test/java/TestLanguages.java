@@ -41,11 +41,30 @@ public class TestLanguages extends JMXActions {
                 openPaytable(132, 863);
                 changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
-//                TODO add FS + Wild button Id
+                openGameRules();
+                makeScreenShotsOfAllPageParts();
+
+                closeGameRules();
+
                 openJMX();
-                clickOnJMXButton("JMXFreespins");
+
+//              TODO add FS + Wild button Id to clickOnJMXButton(); method
+                clickOnJMXButton();
                 closeJMX();
                 clickSpinButton(959, 863);
+
+//              TODO add event after which pop up appears to waitFor(); method
+                waitFor();
+                makeScreenShot("FSActivatedPopUp");
+
+                waitFSIntroAppears();
+                makeScreenShot("FSIntro");
+
+                reload();
+
+                waitFSIntroAppears();
+                makeScreenShot("FSIntrorestored");
+
 
 
 

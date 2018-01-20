@@ -113,4 +113,36 @@ public class PagesActions extends BasicBrowserActions {
         return currentLanguage;
     }
 
+//    TODO added methods for scrolling pages via js.executor
+//    up to method protected void makeScreenShotsOfAllPageParts()
+//    not sure, if it works :)
+
+    protected void getScreenHeight() {
+        int screenHeight = js.executeScript("return window.innerHeight;");
+
+        return screenHeight;
+    }
+
+    protected void getScrollHeight() {
+        int scrollHeight = js.executeScript("return document.body.scrollHeight;");
+
+        return scrollHeight;
+    }
+
+    protected void scrollPageOnScreenHeight() {
+        int screenHeight = getScreenHeight();
+
+        js.executeScript("window.scrollBy(0, " + screenHeight + ")");
+    }
+
+    protected void makeScreenShotsOfAllPageParts() {
+        int amountOfScrolls = getScrollHeight() / getScreenHeight();
+
+        for(int i = 0; i < amountOfScrolls; i++) {
+            scrollPageOnScreenHeight();
+            makeScreenShot(element + "/Page" + (i + 1));
+        }
+
+    }
+
 }
