@@ -105,6 +105,12 @@ public class BasicBrowserActions {
 
     }
 
+    protected void reload () {
+
+        driver.navigate().refresh();
+
+    }
+
 //    TODO try more than 1 device
 //    protected void devicesForEmulation() {
 //        mobileEmulation.put("deviceName", "Google Nexus 6");

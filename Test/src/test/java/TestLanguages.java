@@ -1,12 +1,12 @@
 package test.java;
 
-import main.java.GameActions;
+import main.java.JMXActions;
 import org.junit.Test;
 
 /**
  * Created by ivan.kozlov on 24.02.2017.
  */
-public class TestLanguages extends GameActions {
+public class TestLanguages extends JMXActions {
 
     @Test
     public void languagesTest() throws Exception {
@@ -14,21 +14,42 @@ public class TestLanguages extends GameActions {
         openAndMaximiseBrowser();
         getPage();
         loginAdminPage("netent", "netent");
-        loginTesterPage("zrada", "");
+        loginTesterPage("stest6", "");
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
             for (String gameId : gamesId) {
                 runGame(gameId);
                 waitGameLoaded();
-                makeScreenShot("FSS");
-                clickButtonFSS(850, 850);
+
+                changePagesAndMakeScreenShots("FSS", 798, 673, 3, 35);
+
+                clickButtonFSS(959, 801);
                 makeScreenShot("Keypad");
-                clickSpinButton(850, 820);
-                enteringIdleState();
-                getBalanceInCurrency();
-                openGameRules();
-                //getPage("http://sta-all-kiv-gt5-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
+
+                openGameSettings();
+                makeScreenShot("GameSettings");
+
+                openAutoplaySettings();
+                makeScreenShot("Autoplay");
+
+                openAdvancedAutoplaySettings();
+                makeScreenShot("AutoplayAdvanced");
+
+                closeAutoplaySettings();
+
+                openPaytable(132, 863);
+                changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
+
+//                TODO add FS + Wild button Id
+                openJMX();
+                clickOnJMXButton("JMXFreespins");
+                closeJMX();
+                clickSpinButton(959, 863);
+
+
+
+
                 driver.navigate().back();
             }
         }

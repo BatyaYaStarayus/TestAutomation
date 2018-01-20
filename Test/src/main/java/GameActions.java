@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,6 +111,30 @@ public class GameActions extends PagesActions {
 
     }
 
+    protected void openPaytable (int positionX, int positionY) {
+
+//        850,820 for Neon Staxx
+
+        WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
+        Actions hoverPaytableButton = new Actions(driver);
+        hoverPaytableButton.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+
+    }
+
+    protected void changePagesAndMakeScreenShots (String openedElement, int positionX, int positionY, int pagesAmount, int distanceBetweenIndicators) throws IOException, InterruptedException {
+
+        WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
+        Actions hoverFirstPageIndicator = new Actions(driver);
+        hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+
+        for (int i = 0; i < pagesAmount; i++, positionX += distanceBetweenIndicators) {
+            hoverFirstPageIndicator = new Actions(driver);
+            hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+            makeScreenShot(openedElement + "/Page" + (i + 1) );
+        }
+
+    }
+
     protected void openGameRules () {
 
         WebElement enabledGameRulesButton = driver.findElement(By.className("interface-gameRules_icon_uri"));
@@ -126,6 +151,26 @@ public class GameActions extends PagesActions {
         // verification
         WebElement autoplaySettingsBlock = driver.findElement(By.id("autoplaySettings"));
         Assert.assertEquals(true, autoplaySettingsBlock.isDisplayed());
+
+    }
+
+    protected void closeAutoplaySettings () {
+
+        // action
+        WebElement autoplayButton = driver.findElement(By.id("autoplaySettingsSettingsButton"));
+        autoplayButton.click();
+
+        // verification
+        WebElement autoplaySettingsBlock = driver.findElement(By.id("autoplaySettings"));
+        Assert.assertEquals(false, autoplaySettingsBlock.isDisplayed());
+
+    }
+
+    protected void openAdvancedAutoplaySettings() {
+
+        //@TODO add advancedButton id
+        WebElement autoplayAdvancedButton = driver.findElement(By.id("advancedAutoplaySettingsToggle_button_handle"));
+        autoplayAdvancedButton.click();
 
     }
 
@@ -190,6 +235,8 @@ public class GameActions extends PagesActions {
         hoverButtonFSS.moveToElement(canvasGameArea, positionX, positionY).click().perform();
 
     }
+    
+    
 
     private void getGettersMap() {
 
