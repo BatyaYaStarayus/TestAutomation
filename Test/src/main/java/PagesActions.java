@@ -97,6 +97,7 @@ public class PagesActions extends BasicBrowserActions {
         Thread.sleep(TIMEOUT);
         File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile, new File("C://Screenshots/" + Arrays.toString(gamesId) + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
+        Thread.sleep(TIMEOUT);
     }
 
     protected String getCurrentLanguage() {

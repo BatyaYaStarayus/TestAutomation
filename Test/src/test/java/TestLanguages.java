@@ -1,6 +1,6 @@
 package test.java;
 
-import main.java.GameActions;
+import main.java.JMXActions;
 import org.junit.Test;
 
 /**
@@ -14,7 +14,7 @@ public class TestLanguages extends JMXActions {
         openAndMaximiseBrowser();
         getPage();
         loginAdminPage("netent", "netent");
-        loginTesterPage("zrada", "");
+        loginTesterPage("stest6", "");
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
@@ -22,10 +22,9 @@ public class TestLanguages extends JMXActions {
                 runGame(gameId);
                 waitGameLoaded();
 
-//                TODO insert variables into next function
-                changePagesAndMakeScreenShots();
+                changePagesAndMakeScreenShots("FSS", 798, 673, 3, 35);
 
-                clickButtonFSS(850, 850);
+                clickButtonFSS(959, 801);
                 makeScreenShot("Keypad");
 
                 openGameSettings();
@@ -37,15 +36,16 @@ public class TestLanguages extends JMXActions {
                 openAdvancedAutoplaySettings();
                 makeScreenShot("AutoplayAdvanced");
 
-                openPaytable();
-//                TODO insert variables into next function
-                changePagesAndMakeScreenShots();
+                closeAutoplaySettings();
+
+                openPaytable(132, 863);
+                changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
 //                TODO add FS + Wild button Id
                 openJMX();
-                clickOnButton();
+                clickOnJMXButton("JMXFreespins");
                 closeJMX();
-                clickSpinButton();
+                clickSpinButton(959, 863);
 
 
 

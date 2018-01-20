@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -120,16 +121,16 @@ public class GameActions extends PagesActions {
 
     }
 
-    protected void changePagesAndMakeScreenShots (int positionX, int positionY, int pagesAmount, int distanceBetweenIndicators) {
+    protected void changePagesAndMakeScreenShots (String openedElement, int positionX, int positionY, int pagesAmount, int distanceBetweenIndicators) throws IOException, InterruptedException {
 
         WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
         Actions hoverFirstPageIndicator = new Actions(driver);
         hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
 
         for (int i = 0; i < pagesAmount; i++, positionX += distanceBetweenIndicators) {
-            Actions hoverFirstPageIndicator = new Actions(driver);
+            hoverFirstPageIndicator = new Actions(driver);
             hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
-            makeScreenShot("Page" + (i + 1) );
+            makeScreenShot(openedElement + "/Page" + (i + 1) );
         }
 
     }
@@ -153,12 +154,23 @@ public class GameActions extends PagesActions {
 
     }
 
+    protected void closeAutoplaySettings () {
+
+        // action
+        WebElement autoplayButton = driver.findElement(By.id("autoplaySettingsSettingsButton"));
+        autoplayButton.click();
+
+        // verification
+        WebElement autoplaySettingsBlock = driver.findElement(By.id("autoplaySettings"));
+        Assert.assertEquals(false, autoplaySettingsBlock.isDisplayed());
+
+    }
+
     protected void openAdvancedAutoplaySettings() {
 
         //@TODO add advancedButton id
-
-        WebElement autoplayAdvancedButton = driver.findElement(By.id("autoplaySettingsSettingsButton"));
-        autoplayButton.click();
+        WebElement autoplayAdvancedButton = driver.findElement(By.id("advancedAutoplaySettingsToggle_button_handle"));
+        autoplayAdvancedButton.click();
 
     }
 
