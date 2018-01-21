@@ -41,14 +41,70 @@ public class TestLanguages extends JMXActions {
                 openPaytable(132, 863);
                 changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
-//                TODO add FS + Wild button Id
+                openGameRules();
+                makeScreenShotsOfAllPageParts();
+
+                closeGameRules();
+
                 openJMX();
-                clickOnJMXButton("JMXFreespins");
+//              TODO add FS + Wild button Id to setJMXOn(); method
+                clickOnJMXButton();
                 closeJMX();
                 clickSpinButton(959, 863);
 
+//              TODO add event after which pop up appears to waitFor(); method
+                waitFor();
+                makeScreenShot("FSActivatedPopUp");
 
+                waitFSIntroAppears();
+                makeScreenShot("FSIntro");
 
+                reload();
+
+                waitFSIntroAppears();
+                makeScreenShot("FSIntrorestored");
+
+                openJMX();
+                setOneFreeSpinLeft();
+//                TODO need to fill with JMXNoWin button id in method below
+                clickOnJMXButton("JMXNoWin");
+                closeJMX();
+                clickFSIntroButton();
+//                TODO need to fill with event of FS Intro disappears in method below
+                waitFor();
+                makeScreenShot("FSKeypad");
+
+                waitFSOutoAppears();
+                makeScreenShot("FSOutroNoWin");
+
+                enteringIdleState();
+
+                openJMX();
+                setJMXOn("JMXBigWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Big Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("BigWin");
+                enteringIdleState();
+
+                openJMX();
+                setJMXOn("JMXMegaWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Mega Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("MegaWin");
+                enteringIdleState();
+
+                openJMX();
+                setJMXOn("JMXSuperMegaWin");
+                closeJMX();
+                clickSpinButton();
+//                TODO should add event for "Super Mega Win" text appearance as a parameter for the method below
+                waitFor();
+                makeScreenShot("SuperMegaWin");
+                enteringIdleState();
 
                 driver.navigate().back();
             }

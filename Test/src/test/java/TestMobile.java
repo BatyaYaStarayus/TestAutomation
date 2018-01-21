@@ -1,6 +1,5 @@
 package test.java;
 
-import main.java.GameActions;
 import main.java.JMXActions;
 import org.junit.Test;
 

@@ -62,12 +62,27 @@ public class GameActions extends PagesActions {
 
     }
 
+//    TODO add event for FS Intro appearance into waitFor method's argument
+    protected void waitFSIntoAppears() {
+
+        this.waitFor("");
+
+    }
+
+//    TODO add event for FS Outro appearance into waitFor method's argument
+    protected void waitFSOutoAppears() {
+
+        this.waitFor("");
+
+    }
+
     protected void enteringIdleState() throws Exception {
 
         this.waitFor("enteringIdleState");
 
     }
 
+//    TODO add event for FS Intro&Outro appearance, disappearance to eventsMap.put
     private void initEventsMap() {
 
         eventsMap.put("gameLoaded", "notify:stateHandler.leavingSetupGameState");
@@ -135,11 +150,18 @@ public class GameActions extends PagesActions {
 
     }
 
-    protected void openGameRules () {
+    protected void openGameRules() {
 
         WebElement enabledGameRulesButton = driver.findElement(By.className("interface-gameRules_icon_uri"));
         enabledGameRulesButton.click();
 
+    }
+
+//    TODO closing via openGR method
+//    is it OK? :)
+
+    protected void closeGameRules() {
+        openGameRules();
     }
 
     protected void openAutoplaySettings () {
@@ -225,18 +247,21 @@ public class GameActions extends PagesActions {
 
     }
 
-
     protected void clickSpinButton (int positionX, int positionY) {
 
-//        850,820 for Neon Staxx
-
         WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
-        Actions hoverButtonFSS = new Actions(driver);
-        hoverButtonFSS.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+        Actions hoverSpinButton = new Actions(driver);
+        hoverSpinButton.moveToElement(canvasGameArea, positionX, positionY).click().perform();
 
     }
-    
-    
+
+    protected void clickFSIntroButton (int positionX, int positionY) {
+
+        WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
+        Actions hoverButtonFSIntro = new Actions(driver);
+        hoverButtonFSIntro.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+
+    }
 
     private void getGettersMap() {
 
