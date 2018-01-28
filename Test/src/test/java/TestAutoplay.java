@@ -1,12 +1,9 @@
-package test.java;
-
-import main.java.JMXActions;
 import org.junit.Test;
 
 /**
  * Created by ivan.kozlov on 20.03.2017.
  */
-public class TestAutoplay extends JMXActions {
+public class TestAutoplay extends DesktopGameActions {
 
     @Test
 

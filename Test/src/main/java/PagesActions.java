@@ -1,17 +1,9 @@
-package main.java;
-
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-import org.w3c.dom.html.HTMLInputElement;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,10 +85,12 @@ public class PagesActions extends BasicBrowserActions {
 
     }
 
-    protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
+//    TODO tried to make screenshots of canvas
+    protected void makeScreenShot(String testedElement, String device) throws IOException, InterruptedException {
         Thread.sleep(TIMEOUT);
-        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("C://Screenshots/" + Arrays.toString(gamesId) + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
+        File srcFile = ((TakesScreenshot)driver.findElement(By.id("canvasAnimationManager"))).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile, new File("C://Screenshots/" + Arrays.toString(gamesId) + "/" + device
+                + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
         Thread.sleep(TIMEOUT);
     }
 
@@ -117,14 +111,14 @@ public class PagesActions extends BasicBrowserActions {
 //    up to method protected void makeScreenShotsOfAllPageParts()
 //    not sure, if it works :)
 
-    protected void getScreenHeight() {
-        int screenHeight = js.executeScript("return window.innerHeight;");
+    protected int getScreenHeight() {
+        int screenHeight = (int) js.executeScript("return window.innerHeight;");
 
         return screenHeight;
     }
 
-    protected void getScrollHeight() {
-        int scrollHeight = js.executeScript("return document.body.scrollHeight;");
+    protected int getScrollHeight() {
+        int scrollHeight = (int) js.executeScript("return document.body.scrollHeight;");
 
         return scrollHeight;
     }
@@ -135,7 +129,7 @@ public class PagesActions extends BasicBrowserActions {
         js.executeScript("window.scrollBy(0, " + screenHeight + ")");
     }
 
-    protected void makeScreenShotsOfAllPageParts() {
+    protected void makeScreenShotsOfAllPageParts(String element) throws IOException, InterruptedException {
         int amountOfScrolls = getScrollHeight() / getScreenHeight();
 
         for(int i = 0; i < amountOfScrolls; i++) {

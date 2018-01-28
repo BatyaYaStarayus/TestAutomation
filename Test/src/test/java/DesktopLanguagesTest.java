@@ -1,12 +1,9 @@
-package test.java;
-
-import main.java.JMXActions;
 import org.junit.Test;
 
 /**
  * Created by ivan.kozlov on 24.02.2017.
  */
-public class TestLanguages extends JMXActions {
+public class DesktopLanguagesTest extends DesktopGameActions {
 
     @Test
     public void languagesTest() throws Exception {
@@ -42,13 +39,15 @@ public class TestLanguages extends JMXActions {
                 changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
                 openGameRules();
-                makeScreenShotsOfAllPageParts();
+                makeScreenShotsOfAllPageParts("GameRules");
 
                 closeGameRules();
 
+//              FS activated pop-up
+
                 openJMX();
 //              TODO add FS + Wild button Id to setJMXOn(); method
-                clickOnJMXButton();
+                setJMXOn("FS+Wild");
                 closeJMX();
                 clickSpinButton(959, 863);
 
@@ -56,28 +55,51 @@ public class TestLanguages extends JMXActions {
                 waitFor();
                 makeScreenShot("FSActivatedPopUp");
 
-                waitFSIntroAppears();
+//              FS Intro
+
+                waitFSIntoAppears();
                 makeScreenShot("FSIntro");
 
                 reload();
 
-                waitFSIntroAppears();
-                makeScreenShot("FSIntrorestored");
+//              FS Intro restored
+
+                waitFSIntoAppears();
+                makeScreenShot("FSIntroRestored");
+
+//              FS Keypad
 
                 openJMX();
                 setOneFreeSpinLeft();
 //                TODO need to fill with JMXNoWin button id in method below
-                clickOnJMXButton("JMXNoWin");
+                setJMXOn("JMXNoWin");
                 closeJMX();
                 clickFSIntroButton();
 //                TODO need to fill with event of FS Intro disappears in method below
                 waitFor();
                 makeScreenShot("FSKeypad");
 
+//              FS Outro NoWin text
+
                 waitFSOutoAppears();
                 makeScreenShot("FSOutroNoWin");
 
                 enteringIdleState();
+
+//              FS Outro
+
+                openJMX();
+                setJMXOn("Freespins");
+                closeJMX();
+                clickSpinButton();
+                waitFSIntoAppears();
+                clickFSIntroButton();
+                waitFSOutoAppears();
+                makeScreenShot("FSOutro");
+                clickFSOutroButton();
+                enteringIdleState();
+
+//              Big Win text
 
                 openJMX();
                 setJMXOn("JMXBigWin");
@@ -88,6 +110,8 @@ public class TestLanguages extends JMXActions {
                 makeScreenShot("BigWin");
                 enteringIdleState();
 
+//              Mega Win text
+
                 openJMX();
                 setJMXOn("JMXMegaWin");
                 closeJMX();
@@ -96,6 +120,8 @@ public class TestLanguages extends JMXActions {
                 waitFor();
                 makeScreenShot("MegaWin");
                 enteringIdleState();
+
+//              Super Mega Win text
 
                 openJMX();
                 setJMXOn("JMXSuperMegaWin");

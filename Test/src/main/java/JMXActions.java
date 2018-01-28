@@ -1,9 +1,7 @@
-package main.java;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class JMXActions extends GameActions {
+public class JMXActions extends PagesActions {
 
     private WebElement gameModeButton;
 
@@ -37,19 +35,22 @@ public class JMXActions extends GameActions {
 
     protected void setOneFreeSpinLeft () throws InterruptedException {
 
+
 //        TODO add FSLeft:1 button id instead of "FreeSpinsLeft1"
         setJMXOn("FreeSpinsLeft1");
 
     }
 
-    protected void getNeededGameMode (string gameMode) throws InterruptedException {
+    protected void getNeededGameMode (String neededGameMode) throws InterruptedException {
 
 //        TODO add game mode button id instead of "JMXCurrentGameMode"
-        gameModeButton = driver.findElement(By.className("JMXCurrentGameMode"));
+        WebElement gameModeButton = driver.findElement(By.className("JMXCurrentGameMode"));
+        String currentGameMode = gameModeButton.getText();
+
 
 //        TODO need to add method for getting inner text of gameModeButton
-        while (gameModeButton != gameMode) {
-            setJMXOn(gameModeButton);
+        while (!currentGameMode.equals(neededGameMode)) {
+            setJMXOn(String.valueOf(gameModeButton));
         }
     }
 
