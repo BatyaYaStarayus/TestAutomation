@@ -56,6 +56,8 @@ public class CommonGameActions extends JMXActions {
     protected void waitGameLoaded() throws Exception {
 
         this.waitFor("gameLoaded");
+//        added timeout for FSS appearance
+        Thread.sleep(TIMEOUT*10);
         System.out.println("Game is launched");
 
     }
@@ -122,6 +124,12 @@ public class CommonGameActions extends JMXActions {
 
     }
 
+    protected void waitReelsAreSpinning() throws Exception {
+
+        this.waitFor("spinStarted");
+
+    }
+
     private void initEventsMap() {
 
         eventsMap.put("gameLoaded", "notify:stateHandler.leavingSetupGameState");
@@ -141,6 +149,7 @@ public class CommonGameActions extends JMXActions {
         eventsMap.put("leavingFreeSpinOutroState", "notify:freeSpinOutro.closed");
         eventsMap.put("enteringBigWinState", "notify:stateHandler.enteringBigWinState");
         eventsMap.put("enteringWildAnimationState", "notify:stateHandler.enteringWildAnimationState");
+        eventsMap.put("spinStarted", "request:spin.startSpin");
 
     }
 

@@ -21,8 +21,7 @@ public class PagesActions extends BasicBrowserActions {
 
     protected static final int TIMEOUT = 1000;
 
-//    public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
-    public String[] LANGUAGES = {"bg"};
+    public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
     public String[] gamesId = System.getProperty("GameId").split(",");
 //    public String[] gamesId = {"neonstaxx_not_mobile"};
 

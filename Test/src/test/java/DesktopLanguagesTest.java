@@ -81,6 +81,7 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 //              TODO add FS intro button coordinates
                 clickFSIntroButton(832, 702);
                 waitFSIntoDisappears();
+                waitReelsAreSpinning();
                 makeScreenShot("FSKeypad");
 
 //              FS Outro
