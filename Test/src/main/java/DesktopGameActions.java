@@ -1,3 +1,5 @@
+
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,22 +9,18 @@ import java.io.IOException;
 
 public class DesktopGameActions extends CommonGameActions {
 
-    @Override
+
     protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
-        super.makeScreenShot(testedElement, "Desktop");
+        makeScreenShot(testedElement, "Desktop");
     }
 
     protected void clickButtonFSS (int positionX, int positionY) {
-
-//        850,850 for Neon Staxx
 
         clickOnElementByCoordinates(positionX, positionY);
 
     }
 
     protected void openPaytable (int positionX, int positionY) {
-
-//        850,820 for Neon Staxx
 
         clickOnElementByCoordinates(positionX, positionY);
 
@@ -44,8 +42,7 @@ public class DesktopGameActions extends CommonGameActions {
 
     protected void openGameRules() {
 
-        WebElement enabledGameRulesButton = driver.findElement(By.className("interface-gameRules_icon_uri"));
-        enabledGameRulesButton.click();
+        clickOnElementByClassName("interface-gameRules_icon_uri");
 
     }
 
@@ -82,17 +79,14 @@ public class DesktopGameActions extends CommonGameActions {
 
     protected void openAdvancedAutoplaySettings() {
 
-        //@TODO add advancedButton id
-        WebElement autoplayAdvancedButton = driver.findElement(By.id("advancedAutoplaySettingsToggle_button_handle"));
-        autoplayAdvancedButton.click();
+        clickOnElementById("advancedAutoplaySettingsToggle_button_handle");
 
     }
 
     protected void openGameSettings () {
 
         // action
-        WebElement gameSettingsButton = driver.findElement(By.id("gameSettingsSettingsButton"));
-        gameSettingsButton.click();
+        clickOnElementById("gameSettingsSettingsButton");
 
         // verification
         WebElement gameSettingsBlock = driver.findElement(By.id("gameSettings"));
@@ -103,8 +97,7 @@ public class DesktopGameActions extends CommonGameActions {
     protected void startAutoplay(int roundsAmount) {
 
         String roundsAmountString = Integer.toString(roundsAmount);
-        WebElement roundsAmountButton = driver.findElement(By.id(roundsAmountString));
-        roundsAmountButton.click();
+        clickOnElementById(roundsAmountString);
 
     }
 

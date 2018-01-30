@@ -1,3 +1,5 @@
+
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -31,6 +33,8 @@ public class CommonGameActions extends JMXActions {
         String result = "";
         String eventName = eventsMap.get(eventKey);
 
+        System.out.println(eventName);
+
         js.executeScript("window.TEST_EVENT_FIRED = false;" +
                 "window.TEST_EVENT = new Sys.Observable();" +
                 "window.TEST_EVENT.addListener('" + eventName + "', " +
@@ -39,18 +43,20 @@ public class CommonGameActions extends JMXActions {
                 "window.TEST_EVENT_FIRED = true; " +
                 "});");
 
-
         while (!("true".equals(result))) {
             result = js.executeScript("return window.TEST_EVENT_FIRED").toString();
             Thread.sleep(TIMEOUT);
 
         }
 
+
+
     }
 
     protected void waitGameLoaded() throws Exception {
 
         this.waitFor("gameLoaded");
+        System.out.println("Game is launched");
 
     }
 
@@ -62,27 +68,60 @@ public class CommonGameActions extends JMXActions {
 //
 //    }
 
-//    TODO add event for FS Intro appearance into waitFor method's argument
-    protected void waitFSIntoAppears() throws Exception {
+    protected void waitFSIntroAppears() throws Exception {
 
-        this.waitFor("");
+        this.waitFor("enteringFreeSpinIntroState");
+        Thread.sleep(TIMEOUT);
+        System.out.println("FS Intro appeared");
 
     }
 
-//    TODO add event for FS Outro appearance into waitFor method's argument
-    protected void waitFSOutoAppears() throws Exception {
+    protected void waitFSIntoDisappears() throws Exception {
 
-        this.waitFor("");
+        this.waitFor("leavingFreeSpinIntroState");
+        System.out.println("FS Intro disappeared");
+
+    }
+
+    protected void waitFSOutroAppears() throws Exception {
+
+        this.waitFor("enteringFreeSpinOutroState");
+        System.out.println("FS Outro appeared");
+
+    }
+
+    protected void waitFSOutroDisappears() throws Exception {
+
+        this.waitFor("leavingFreeSpinOutroState");
+        System.out.println("FS Outro disappeared");
 
     }
 
     protected void enteringIdleState() throws Exception {
 
         this.waitFor("enteringIdleState");
+        System.out.println("Entered Idle State");
 
     }
 
-//    TODO add event for FS Intro&Outro appearance, disappearance to eventsMap.put
+    protected void waitBigWinsCountUpCompleted() throws Exception {
+
+        this.waitFor("bigWinTotalCountUpIsShown");
+
+    }
+
+    protected void enteringBigWinState() throws Exception {
+
+        this.waitFor("enteringBigWinState");
+
+    }
+
+    protected void waitFSPopUpAppears() throws Exception {
+
+        this.waitFor("enteringWildAnimationState");
+
+    }
+
     private void initEventsMap() {
 
         eventsMap.put("gameLoaded", "notify:stateHandler.leavingSetupGameState");
@@ -96,7 +135,12 @@ public class CommonGameActions extends JMXActions {
         eventsMap.put("spinAnimationComplete", "notify:spin.spinAnimationComplete");
         eventsMap.put("showingDialog", "notify.dialogWindow.showingDialog");
         eventsMap.put("enteringIdleState", "notify:stateHandler.enteringIdleState");
-
+        eventsMap.put("enteringFreeSpinIntroState", "notify:stateHandler.enteringFreeSpinIntroState");
+        eventsMap.put("enteringFreeSpinOutroState", "notify:stateHandler.enteringFreeSpinOutroState");
+        eventsMap.put("leavingFreeSpinIntroState", "notify:stateHandler.leavingFreeSpinIntroState");
+        eventsMap.put("leavingFreeSpinOutroState", "notify:freeSpinOutro.closed");
+        eventsMap.put("enteringBigWinState", "notify:stateHandler.enteringBigWinState");
+        eventsMap.put("enteringWildAnimationState", "notify:stateHandler.enteringWildAnimationState");
 
     }
 
@@ -186,7 +230,11 @@ public class CommonGameActions extends JMXActions {
 
     }
 
+    protected void skipGameAnimations() {
 
+        clickOnElementByCoordinates(800, 800);
+
+    }
 }
 
 

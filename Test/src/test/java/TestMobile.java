@@ -1,3 +1,6 @@
+
+
+
 import org.junit.Test;
 
 /**
@@ -18,7 +21,6 @@ public class TestMobile extends CommonGameActions {
             runGame(gameId);
             waitGameLoaded();
             getBetInCurrency();
-            clickSpinButton(210, 430);
             enteringIdleState();
             getBalanceInCurrency();
             getPage();

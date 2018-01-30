@@ -1,3 +1,5 @@
+
+
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -76,7 +78,7 @@ public class BasicBrowserActions {
 
     protected void initializeMobileDriver () {
 
-        mobileEmulation.put("deviceName", "Google Nexus 6");
+        mobileEmulation.put("deviceName", "iPhone 7");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = new DesiredCapabilities();
@@ -90,12 +92,16 @@ public class BasicBrowserActions {
 
         initializeJSExecutor();
 
+        System.out.println("Mobile driver initialized");
+
     }
 
 //    Browser actions
 
     protected void openAndMaximiseBrowser() {
         driver.manage().window().maximize();
+
+        System.out.println("Maximized browser");
     }
 
     protected void getPage() throws InterruptedException {
@@ -103,22 +109,30 @@ public class BasicBrowserActions {
         String pageURL = System.getProperty("Environment");
         driver.get(pageURL);
 
+        System.out.println("Get page");
+
     }
 
     protected void reload () {
 
         driver.navigate().refresh();
 
+        System.out.println("Reloaded");
+
     }
 
-    protected void clickOnElementByClass(String elementClass) {
-        WebElement element = driver.findElement(By.className(elementClass));
+    protected void clickOnElementByClassName(String elementClassName) {
+        WebElement element = driver.findElement(By.className(elementClassName));
         element.click();
+
+        System.out.println("Clicked on button with class " + elementClassName);
     }
 
     protected void clickOnElementById(String elementId) {
         WebElement element = driver.findElement(By.id(elementId));
         element.click();
+
+        System.out.println("Clicked on button with id " + elementId);
     }
 
     protected void clickOnElementByCoordinates (int positionX, int positionY) {
@@ -126,6 +140,8 @@ public class BasicBrowserActions {
         WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
         Actions hoverElement = new Actions(driver);
         hoverElement.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+
+        System.out.println("Clicked on coordinates: X = " + positionX + ", Y = " + positionY);
 
     }
 

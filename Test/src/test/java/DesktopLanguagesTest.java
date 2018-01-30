@@ -1,3 +1,6 @@
+
+
+
 import org.junit.Test;
 
 /**
@@ -21,6 +24,8 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 
                 changePagesAndMakeScreenShots("FSS", 798, 673, 3, 35);
 
+                clickToDisableSounds();
+
                 clickButtonFSS(959, 801);
                 makeScreenShot("Keypad");
 
@@ -38,97 +43,114 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 openPaytable(132, 863);
                 changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
 
-                openGameRules();
-                makeScreenShotsOfAllPageParts("GameRules");
-
-                closeGameRules();
+//                TODO fix scrolling build 106 output
+//                openGameRules();
+//                makeScreenShotsOfAllPageParts("GameRules", "Desktop");
+//
+//                closeGameRules();
 
 //              FS activated pop-up
 
                 openJMX();
-//              TODO add FS + Wild button Id to setJMXOn(); method
-                setJMXOn("FS+Wild");
+                setJMXOn("JMXFreeSpins+Wild");
                 closeJMX();
                 clickSpinButton(959, 863);
+                clickSpinButton(959, 863);
+                skipGameAnimations();
 
-//              TODO add event after which pop up appears to waitFor(); method
-                waitFor();
+                waitFSPopUpAppears();
                 makeScreenShot("FSActivatedPopUp");
 
 //              FS Intro
 
-                waitFSIntoAppears();
+                waitFSIntroAppears();
                 makeScreenShot("FSIntro");
 
                 reload();
 
 //              FS Intro restored
 
-                waitFSIntoAppears();
+                waitFSIntroAppears();
                 makeScreenShot("FSIntroRestored");
 
 //              FS Keypad
 
                 openJMX();
                 setOneFreeSpinLeft();
-//                TODO need to fill with JMXNoWin button id in method below
-                setJMXOn("JMXNoWin");
                 closeJMX();
-                clickFSIntroButton();
-//                TODO need to fill with event of FS Intro disappears in method below
-                waitFor();
+//              TODO add FS intro button coordinates
+                clickFSIntroButton(832, 702);
+                waitFSIntoDisappears();
                 makeScreenShot("FSKeypad");
-
-//              FS Outro NoWin text
-
-                waitFSOutoAppears();
-                makeScreenShot("FSOutroNoWin");
-
-                enteringIdleState();
 
 //              FS Outro
 
-                openJMX();
-                setJMXOn("Freespins");
-                closeJMX();
-                clickSpinButton();
-                waitFSIntoAppears();
-                clickFSIntroButton();
-                waitFSOutoAppears();
+                waitFSOutroAppears();
                 makeScreenShot("FSOutro");
-                clickFSOutroButton();
-                enteringIdleState();
+
+                clickFSOutroButton(832, 702);
+//                waitFSOutroDisappears();
+//                enteringIdleState();
+
+//              FS OutroNoWin
+
+                openJMX();
+                setNeededGameMode("basic3");
+                setJMXOn("JMXFreespins");
+                closeJMX();
+                clickSpinButton(959, 863);
+                skipGameAnimations();
+                waitFSIntroAppears();
+
+                openJMX();
+                setNeededGameMode("freespin1");
+                setJMXOn("JMXNoWin");
+                closeJMX();
+
+//              TODO add FS intro button coordinates
+                clickFSIntroButton(832, 702);
+                waitFSOutroAppears();
+                makeScreenShot("FSOutroNoWin");
+
+//              TODO add FS intro button coordinates
+                clickFSOutroButton(832, 702);
+//                waitFSOutroDisappears();
+//                enteringIdleState();
 
 //              Big Win text
 
                 openJMX();
-                setJMXOn("JMXBigWin");
+                setNeededGameMode("basic3");
+                setBigWinType("BigWin");
                 closeJMX();
-                clickSpinButton();
-//                TODO should add event for "Big Win" text appearance as a parameter for the method below
-                waitFor();
+                clickSpinButton(959, 863);
+                skipGameAnimations();
+                enteringBigWinState();
+                skipGameAnimations();
                 makeScreenShot("BigWin");
                 enteringIdleState();
 
 //              Mega Win text
 
                 openJMX();
-                setJMXOn("JMXMegaWin");
+                setBigWinType("MegaWin");
                 closeJMX();
-                clickSpinButton();
-//                TODO should add event for "Mega Win" text appearance as a parameter for the method below
-                waitFor();
+                clickSpinButton(959, 863);
+                skipGameAnimations();
+                enteringBigWinState();
+                skipGameAnimations();
                 makeScreenShot("MegaWin");
                 enteringIdleState();
 
 //              Super Mega Win text
 
                 openJMX();
-                setJMXOn("JMXSuperMegaWin");
+                setBigWinType("SuperMegaWin");
                 closeJMX();
-                clickSpinButton();
-//                TODO should add event for "Super Mega Win" text appearance as a parameter for the method below
-                waitFor();
+                clickSpinButton(959, 863);
+                skipGameAnimations();
+                enteringBigWinState();
+                skipGameAnimations();
                 makeScreenShot("SuperMegaWin");
                 enteringIdleState();
 
