@@ -33,8 +33,6 @@ public class CommonGameActions extends JMXActions {
         String result = "";
         String eventName = eventsMap.get(eventKey);
 
-        System.out.println(eventName);
-
         js.executeScript("window.TEST_EVENT_FIRED = false;" +
                 "window.TEST_EVENT = new Sys.Observable();" +
                 "window.TEST_EVENT.addListener('" + eventName + "', " +

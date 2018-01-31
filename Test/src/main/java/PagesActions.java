@@ -122,30 +122,36 @@ public class PagesActions extends BasicBrowserActions {
 //    up to method protected void makeScreenShotsOfAllPageParts()
 //    not sure, if it works :)
 
-    protected int getScreenHeight() {
-        int screenHeight = (int) js.executeScript("return window.innerHeight;");
+    protected int getScreenHeight(String elementId) {
+        int screenHeight = (int) js.executeScript("return document.getElementById(" + elementId +").clientHeight;");
+
+//        .clientHeight
 
         return screenHeight;
     }
 
     protected int getScrollHeight() {
-        int scrollHeight = (int) js.executeScript("return document.body.scrollHeight;");
+        int scrollHeight = (int) js.executeScript("return document.body.clientHeight;");
+
+//        document.body.clientHeight
 
         return scrollHeight;
     }
 
     protected void scrollPageOnScreenHeight() {
-        int screenHeight = getScreenHeight();
+        int screenHeight = getScrollHeight();
+
+//      document.getElementById("settingsWindowContent").scrollBy(0, -pageHeight)
 
         js.executeScript("window.scrollBy(0, " + screenHeight + ")");
     }
 
-    protected void makeScreenShotsOfAllPageParts(String element, String device) throws IOException, InterruptedException {
-        int amountOfScrolls = getScrollHeight() / getScreenHeight();
+    protected void makeScreenShotsOfAllPageParts(String elementId, String device) throws IOException, InterruptedException {
+        int amountOfScrolls = getScrollHeight() / getScreenHeight(elementId);
 
         for(int i = 0; i < amountOfScrolls; i++) {
             scrollPageOnScreenHeight();
-            makeScreenShot((element + "/Page" + (i + 1)), device);
+            makeScreenShot((elementId + "/Page" + (i + 1)), device);
         }
 
     }

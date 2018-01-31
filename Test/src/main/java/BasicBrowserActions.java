@@ -78,7 +78,7 @@ public class BasicBrowserActions {
 
     protected void initializeMobileDriver () {
 
-        mobileEmulation.put("deviceName", "iPhone 7");
+        mobileEmulation.put("deviceName", "Nexus 5");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = new DesiredCapabilities();
@@ -104,7 +104,7 @@ public class BasicBrowserActions {
         System.out.println("Maximized browser");
     }
 
-    protected void getPage() throws InterruptedException {
+    protected void getPage() {
 
         String pageURL = System.getProperty("Environment");
         driver.get(pageURL);

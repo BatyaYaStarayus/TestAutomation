@@ -123,6 +123,8 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 openJMX();
                 setNeededGameMode("basic3");
                 setBigWinType("BigWin");
+//              to avoid wilds
+                setJMXOn("JMXWildTop");
                 closeJMX();
                 clickSpinButton(959, 863);
                 skipGameAnimations();

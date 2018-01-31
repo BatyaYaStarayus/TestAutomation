@@ -123,6 +123,7 @@ public class MobileLanguagesTest extends MobileGameActions {
                 openJMX();
                 setNeededGameMode("basic3");
                 setJMXOn("JMXBigWin");
+                setJMXOn("JMXWildTop");
                 closeJMX();
                 clickSpinButton();
                 skipGameAnimations();
