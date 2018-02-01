@@ -40,16 +40,17 @@ public class DesktopGameActions extends CommonGameActions {
 
     }
 
-    protected void openGameRules() {
+    protected void openGameRules() throws InterruptedException {
 
         clickOnElementByClassName("interface-gameRules_icon_uri");
+        Thread.sleep(TIMEOUT);
 
     }
 
     //    TODO closing via openGR method
 //    is it OK? :)
 
-    protected void closeGameRules() {
+    protected void closeGameRules() throws InterruptedException {
         openGameRules();
     }
 

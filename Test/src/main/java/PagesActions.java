@@ -21,6 +21,7 @@ public class PagesActions extends BasicBrowserActions {
 
     protected static final int TIMEOUT = 1000;
 
+//    public String[] LANGUAGES = {"bg"};
     public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
     public String[] gamesId = System.getProperty("GameId").split(",");
 //    public String[] gamesId = {"neonstaxx_not_mobile"};
@@ -29,13 +30,17 @@ public class PagesActions extends BasicBrowserActions {
 
     protected void login(String user, String password, WebElement userField, WebElement passwordField, WebElement loginButton) {
 
-        userField.click();
+//        userField.click();
         userField.sendKeys(user);
 
-        passwordField.click();
+//        passwordField.click();
         passwordField.sendKeys(password);
 
+//      for desktop
         loginButton.click();
+
+//      for mobile
+        loginButton.submit();
 
     }
 
@@ -43,8 +48,8 @@ public class PagesActions extends BasicBrowserActions {
 
     protected void loginAdminPage(String user, String password) throws InterruptedException {
 
-        WebElement userField = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td/form/table/tbody/tr[1]/td[2]/input"));
-        WebElement passwordField = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td/form/table/tbody/tr[2]/td[2]/input"));
+        WebElement userField = driver.findElement(By.xpath("//input[@name='login']"));
+        WebElement passwordField = driver.findElement(By.xpath("//input[@name='password']"));
         WebElement loginButton = driver.findElement(By.xpath("//*[@value='Login']"));
 
         login(user, password, userField, passwordField, loginButton);
@@ -122,36 +127,39 @@ public class PagesActions extends BasicBrowserActions {
 //    up to method protected void makeScreenShotsOfAllPageParts()
 //    not sure, if it works :)
 
-    protected int getScreenHeight(String elementId) {
-        int screenHeight = (int) js.executeScript("return document.getElementById(" + elementId +").clientHeight;");
+    protected long getScreenHeight() {
+        long screenHeight;
+        screenHeight = (long) js.executeScript("return document.getElementById('containerWrapper').clientHeight;");
 
-//        .clientHeight
+        System.out.println(screenHeight);
 
         return screenHeight;
     }
 
-    protected int getScrollHeight() {
-        int scrollHeight = (int) js.executeScript("return document.body.clientHeight;");
+    protected long getScrollHeight() {
+        long scrollHeight;
+        scrollHeight = (long) js.executeScript("return document.getElementById('gameRules').clientHeight;");
 
-//        document.body.clientHeight
+        System.out.println(scrollHeight);
 
         return scrollHeight;
     }
 
     protected void scrollPageOnScreenHeight() {
-        int screenHeight = getScrollHeight();
+        js.executeScript("document.getElementById('containerWrapper').scrollBy(0, " + getScreenHeight() + ")");
 
-//      document.getElementById("settingsWindowContent").scrollBy(0, -pageHeight)
-
-        js.executeScript("window.scrollBy(0, " + screenHeight + ")");
+        System.out.println(getScreenHeight());
     }
 
     protected void makeScreenShotsOfAllPageParts(String elementId, String device) throws IOException, InterruptedException {
-        int amountOfScrolls = getScrollHeight() / getScreenHeight(elementId);
+        long amountOfScrolls;
+        amountOfScrolls = getScrollHeight() / getScreenHeight();
 
-        for(int i = 0; i < amountOfScrolls; i++) {
-            scrollPageOnScreenHeight();
+        System.out.println(amountOfScrolls);
+
+        for(int i = 0; i <= amountOfScrolls; i++) {
             makeScreenShot((elementId + "/Page" + (i + 1)), device);
+            scrollPageOnScreenHeight();
         }
 
     }

@@ -78,17 +78,17 @@ public class BasicBrowserActions {
 
     protected void initializeMobileDriver () {
 
-        mobileEmulation.put("deviceName", "Nexus 5");
+        mobileEmulation.put("deviceName", "Nexus 6");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
-        capabilities = new DesiredCapabilities();
+        capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
 //        TODO try iOS and safari
 //        capabilities.setCapability(CapabilityType.BROWSER_NAME, "iOS");
 //        capabilities.setCapability(CapabilityType.VERSION, "10.0");
 
-        this.driver = new ChromeDriver(capabilities);
+        driver = new ChromeDriver(capabilities);
 
         initializeJSExecutor();
 

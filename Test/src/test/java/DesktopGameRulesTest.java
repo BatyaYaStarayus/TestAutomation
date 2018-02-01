@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by ivan.kozlov on 20.03.2017.
  */
-public class TestAutoplay extends DesktopGameActions {
+public class DesktopGameRulesTest extends DesktopGameActions {
 
     @Test
 
