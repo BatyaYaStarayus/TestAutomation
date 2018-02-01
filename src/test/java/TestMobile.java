@@ -14,18 +14,15 @@ public class TestMobile extends CommonGameActions {
         initializeMobileDriver();
         openAndMaximiseBrowser();
         getPage();
-        loginAdminPage("netent", "netent");
-        loginTesterPage("zrada", "");
+        loginAdminPage();
+        loginTesterPage();
 
-        for (String gameId : gamesId) {
             runGame(gameId);
             waitGameLoaded();
             getBetInCurrency();
             enteringIdleState();
             getBalanceInCurrency();
             getPage();
-        }
-
     }
 
 }

@@ -2,14 +2,6 @@
 
 
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ivan.kozlov on 24.02.2017.
@@ -18,7 +10,6 @@ public class MobileLanguagesTest extends MobileGameActions {
 
     @Test
     public void languagesTest() throws Exception {
-        initializeMobileDriver();
 
 //        Map<String, String> mobileEmulation = new HashMap<>();
 //        mobileEmulation.put("deviceName", "Nexus 10");
@@ -38,15 +29,9 @@ public class MobileLanguagesTest extends MobileGameActions {
 //        driver.findElement(By.name("password")).sendKeys("netent");
 //        driver.findElement(By.xpath("//input[@value='Login']")).click();
 
-        openAndMaximiseBrowser();
-
-        getPage();
-        loginAdminPage("netent", "netent");
-//        loginTesterPage("stest6", "");
-
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
-            for (String gameId : gamesId) {
+
                 runGame(gameId);
                 waitGameLoaded();
 
@@ -185,9 +170,7 @@ public class MobileLanguagesTest extends MobileGameActions {
                 enteringIdleState();
 
                 driver.navigate().back();
-            }
         }
-
         logoutTesterPage();
     }
 }

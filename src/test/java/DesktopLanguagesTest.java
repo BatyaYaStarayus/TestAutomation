@@ -10,15 +10,9 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 
     @Test
     public void languagesTest() throws Exception {
-        initializeDesktopDriver("Chrome");
-        openAndMaximiseBrowser();
-        getPage();
-        loginAdminPage("netent", "netent");
-        loginTesterPage("stest6", "");
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
-            for (String gameId : gamesId) {
                 runGame(gameId);
                 waitGameLoaded();
 
@@ -158,7 +152,6 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 //                enteringIdleState();
 
                 driver.navigate().back();
-            }
         }
 
         logoutTesterPage();

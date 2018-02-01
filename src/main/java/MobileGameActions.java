@@ -1,17 +1,23 @@
 
 
+import org.junit.Before;
+
 import java.io.IOException;
 
 public class MobileGameActions extends CommonGameActions{
 
-    protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
-        makeScreenShot(testedElement, "Mobile");
+    @Before
+
+    public void prepareToLaunchGameDesktop() throws InterruptedException {
+        initializeMobileDriver();
+        openAndMaximiseBrowser();
+        getPage();
+        loginAdminPage();
+        loginTesterPage();
     }
 
-    protected void closeDeviceDetectionMessage() {
-
-
-
+    protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
+        makeScreenShot(testedElement, "Mobile");
     }
 
     protected void openGameSettings() {

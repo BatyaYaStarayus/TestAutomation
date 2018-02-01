@@ -1,5 +1,3 @@
-
-
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -35,13 +33,11 @@ public class BasicBrowserActions {
 //    Initializing Drivers and jsExecutor
 
     protected void initializeJSExecutor() {
-
         if (driver instanceof JavascriptExecutor) {
             js = (JavascriptExecutor) driver;
         }else{
             throw new ClassCastException("Driver is not an instance of JavascriptExecutor");
         }
-
     }
 
     protected void initializeDesktopDriver(String browser) {
@@ -77,7 +73,6 @@ public class BasicBrowserActions {
     }
 
     protected void initializeMobileDriver () {
-
         mobileEmulation.put("deviceName", "Nexus 6");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
@@ -91,63 +86,36 @@ public class BasicBrowserActions {
         driver = new ChromeDriver(capabilities);
 
         initializeJSExecutor();
-
-        System.out.println("Mobile driver initialized");
-
     }
 
 //    Browser actions
 
     protected void openAndMaximiseBrowser() {
         driver.manage().window().maximize();
-
-        System.out.println("Maximized browser");
     }
 
     protected void getPage() {
-
         String pageURL = System.getProperty("Environment");
         driver.get(pageURL);
-
-        System.out.println("Get page");
-
     }
 
     protected void reload () {
-
         driver.navigate().refresh();
-
-        System.out.println("Reloaded");
-
     }
 
     protected void clickOnElementByClassName(String elementClassName) {
         WebElement element = driver.findElement(By.className(elementClassName));
         element.click();
-
-        System.out.println("Clicked on button with class " + elementClassName);
     }
 
     protected void clickOnElementById(String elementId) {
         WebElement element = driver.findElement(By.id(elementId));
         element.click();
-
-        System.out.println("Clicked on button with id " + elementId);
     }
 
     protected void clickOnElementByCoordinates (int positionX, int positionY) {
-
         WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
         Actions hoverElement = new Actions(driver);
         hoverElement.moveToElement(canvasGameArea, positionX, positionY).click().perform();
-
-        System.out.println("Clicked on coordinates: X = " + positionX + ", Y = " + positionY);
-
     }
-
-//    TODO try more than 1 device
-//    protected void devicesForEmulation() {
-//        mobileEmulation.put("deviceName", "Google Nexus 6");
-//    }
-
 }

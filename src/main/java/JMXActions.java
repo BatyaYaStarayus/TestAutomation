@@ -13,7 +13,6 @@ public class JMXActions extends PagesActions {
     }
     
     protected void setJMXOn(String buttonId) throws InterruptedException {
-
        clickOnElementById(buttonId);
        Thread.sleep(TIMEOUT);
     }
@@ -24,30 +23,22 @@ public class JMXActions extends PagesActions {
     }
 
     protected void setJMXOnFreeSpins () throws InterruptedException {
-
         openJMX();
         setJMXOn("JMXFreespins");
         closeJMX();
-
     }
 
     protected void setOneFreeSpinLeft () throws InterruptedException {
-
         setJMXOn("JMXFreespinsLeft1");
-
     }
 
     protected String getCurrentGameMode() {
-
         WebElement gameModeButton = driver.findElement(By.id("JMXGameMode"));
-        String currentGameMode = gameModeButton.getText();
 
-        return currentGameMode;
-
+        return gameModeButton.getText();
     }
 
     protected void setNeededGameMode(String neededGameMode) throws InterruptedException {
-
         String gameModeString = "Current game mode: ";
 
         while (!getCurrentGameMode().equals(gameModeString + neededGameMode)) {
@@ -56,23 +47,17 @@ public class JMXActions extends PagesActions {
     }
 
     protected String getBigWinType() {
-
         WebElement bigWinsButton = driver.findElement(By.id("JMXBigWins..."));
         String bigWinsButtonText = bigWinsButton.getText();
 
-        String currentBigWinType = bigWinsButtonText.toLowerCase().replaceAll(" ", "");
-
-        return currentBigWinType;
-
+        return bigWinsButtonText.toLowerCase().replaceAll(" ", "");
     }
 
     protected void setBigWinType(String neededBigWinType) throws InterruptedException {
-
         do {
                 setJMXOn("JMXBigWins...");
         }
         while (!getBigWinType().contains(neededBigWinType.toLowerCase()));
     }
-
 }
 
