@@ -1,4 +1,5 @@
-.idea
+.idea/
 target/
 reports/
 out/
+Test.iml
