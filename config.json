@@ -1,0 +1,69 @@
+{
+  "Elements": {
+
+    "Desktop" : {
+
+      "FSS" : {
+        "continueButtonPositionX" : 959,
+        "continueButtonPositionY" : 801,
+        "firstTabButtonPositionX" : 673,
+        "firstTabButtonPositionY" : 673,
+        "amountOfButtons" : 3,
+        "distanceBetweenButtons" : 35
+      },
+
+      "Paytable" : {
+        "openPaytableButtonPositionX" : 132,
+        "openPaytableButtonPositionY" : 863,
+        "firstTabButtonPositionX" : 649,
+        "firstTabButtonPositionY" : 694,
+        "amountOfButtons" : 10,
+        "distanceBetweenButtons" : 40
+      },
+
+      "SpinButton" : {
+        "spinButtonPositionX" : 959,
+        "spinButtonPositionY" : 863
+      },
+
+      "FSIntro" : {
+        "continueButtonPositionX" : 832,
+        "continueButtonPositionY" : 702
+      },
+
+      "FSOutro" : {
+        "continueButtonPositionX" : 832,
+        "continueButtonPositionY" : 702
+      }
+    },
+
+    "Mobile" : {
+
+      "PortraitMode" : {
+
+        "FSIntro" : {
+          "continueButtonPositionX" : 205,
+          "continueButtonPositionY" : 549
+        },
+
+        "FSOutro" : {
+          "continueButtonPositionX" : 205,
+          "continueButtonPositionY" : 549
+        }
+      },
+
+      "LandscapeMode" : {
+
+        "FSIntro" : {
+          "continueButtonPositionX" : 832,
+          "continueButtonPositionY" : 702
+        },
+
+        "FSOutro" : {
+          "continueButtonPositionX" : 832,
+          "continueButtonPositionY" : 702
+        }
+      }
+    }
+  }
+}

@@ -12,10 +12,10 @@ public class TestMobile extends CommonGameActions {
     public void myMobileTest() throws Exception{
 
         initializeMobileDriver();
-        openAndMaximiseBrowser();
+//        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
-        loginTesterPage();
+//        loginTesterPage();
 
             runGame(gameId);
             waitGameLoaded();

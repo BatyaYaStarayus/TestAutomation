@@ -12,10 +12,10 @@ public class DesktopGameActions extends CommonGameActions {
 
     public void prepareToLaunchGameDesktop() throws InterruptedException {
         initializeDesktopDriver("Chrome");
-        openAndMaximiseBrowser();
+//        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
-        loginTesterPage();
+        loginTesterPage(DESKTOPCHANNEL);
     }
 
     protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {

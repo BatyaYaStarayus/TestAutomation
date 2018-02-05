@@ -51,8 +51,10 @@ public class CommonGameActions extends JMXActions {
     }
 
     protected void waitFSIntroAppears() throws Exception {
+        System.out.println(":)");
         this.waitFor("enteringFreeSpinIntroState");
         Thread.sleep(TIMEOUT);
+        System.out.println(":|");
     }
 
     protected void waitFSIntoDisappears() throws Exception {
@@ -76,7 +78,9 @@ public class CommonGameActions extends JMXActions {
     }
 
     protected void enteringBigWinState() throws Exception {
+        System.out.println("1");
         this.waitFor("enteringBigWinState");
+        System.out.println("2");
     }
 
     protected void waitFSPopUpAppears() throws Exception {
@@ -169,7 +173,8 @@ public class CommonGameActions extends JMXActions {
     }
 
     protected void skipGameAnimations() {
-        clickOnElementByCoordinates(800, 800);
+        clickOnElementByCoordinates(205, 549);
+        System.out.println("Clicked");
     }
 }
 

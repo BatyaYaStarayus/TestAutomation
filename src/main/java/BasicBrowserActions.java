@@ -16,6 +16,7 @@ import javax.swing.text.Position;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class BasicBrowserActions {
 
     protected WebDriver driver;
@@ -73,7 +74,8 @@ public class BasicBrowserActions {
     }
 
     protected void initializeMobileDriver () {
-        mobileEmulation.put("deviceName", "Nexus 6");
+
+        mobileEmulation.put("deviceName", "Nexus 7");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = DesiredCapabilities.chrome();
@@ -86,13 +88,17 @@ public class BasicBrowserActions {
         driver = new ChromeDriver(capabilities);
 
         initializeJSExecutor();
+
+        System.out.println("Mobile driver initialized");
+
     }
+
 
 //    Browser actions
 
-    protected void openAndMaximiseBrowser() {
-        driver.manage().window().maximize();
-    }
+//    protected void openAndMaximiseBrowser() {
+//        driver.manage().window().maximize();
+//    }
 
     protected void getPage() {
         String pageURL = System.getProperty("Environment");

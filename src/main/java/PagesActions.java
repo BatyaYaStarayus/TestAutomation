@@ -27,6 +27,9 @@ public class PagesActions extends BasicBrowserActions {
     protected static final String TESTERPAGEUSER = "stest6";
     protected static final String TESTERPAGEPASSWORD = "";
 
+    protected static final String DESKTOPCHANNEL = "bbg";
+    protected static final String MOBILECHANNEL = "mobg";
+
 //    TODO add languages to Jenkins job parameters
 
     public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
@@ -39,10 +42,14 @@ public class PagesActions extends BasicBrowserActions {
         userField.sendKeys(user);
 //      passwordField.click();
         passwordField.sendKeys(password);
-//      for desktop
         loginButton.click();
-//      for mobile
-        loginButton.submit();
+    }
+
+    protected void setChannel(String channel) {
+        WebElement channelDropdownList = driver.findElement(By.id("type"));
+
+        Select selectChannel = new Select(channelDropdownList);
+        selectChannel.selectByValue(channel);
     }
 
 //    admin page actions
@@ -57,10 +64,12 @@ public class PagesActions extends BasicBrowserActions {
 
 //    tester page actions
 
-    protected void loginTesterPage() throws InterruptedException {
+    protected void loginTesterPage(String channel) throws InterruptedException {
         WebElement userField = driver.findElement(By.xpath("//*[@id=\"defaultForm\"]/input[1]"));
         WebElement passwordField = driver.findElement(By.xpath("//*[@id=\"defaultForm\"]/input[2]"));
         WebElement loginButton = driver.findElement(By.xpath("//*[@value='login']"));
+
+        setChannel(channel);
 
         login(TESTERPAGEUSER, TESTERPAGEPASSWORD, userField, passwordField, loginButton);
     }

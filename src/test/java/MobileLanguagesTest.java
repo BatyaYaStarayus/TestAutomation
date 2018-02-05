@@ -37,42 +37,46 @@ public class MobileLanguagesTest extends MobileGameActions {
 
                 makeScreenShot("Keypad");
 
-                openGameSettings();
-
-                openSoundSettingsTab();
-                makeScreenShot("SoundSettings");
-
-                openSpinSettingsTab();
-                makeScreenShot("SpinSettings");
-
-                openBetSettingsTab();
-                makeScreenShot("BetSettings");
-
-                openPaytableTab();
-                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
-
-                openGameRulesTab();
-                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
-
-                openGameHistoryTab();
-                makeScreenShot("GameHistory");
-
-                openSpinSettingsTab();
-                openAdvancedAutoplaySettings();
-                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
-
-                setIfCashDecreasesValue();
-                makeScreenShot("IfCashDecreases");
-                closeAdvancedSettingValueWindow();
-
-                setIfSingleWinExceedsValue();
-                makeScreenShot("IfSingleWinExceeds");
-                closeAdvancedSettingValueWindow();
-
-                setIfCashInreasesValue();
-                makeScreenShot("IfCashIncreases");
-                closeAdvancedSettingValueWindow();
-
+//                openGameSettings();
+//
+//                openSpinSettingsTab();
+//
+//                goToLeftMostTab();
+//
+//                openSoundSettingsTab();
+//                makeScreenShot("SoundSettings");
+//
+//                openSpinSettingsTab();
+//                makeScreenShot("SpinSettings");
+//
+//                openBetSettingsTab();
+//                makeScreenShot("BetSettings");
+//
+//                openPaytableTab();
+//                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
+//
+//                openGameRulesTab();
+//                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
+//
+//                openGameHistoryTab();
+//                makeScreenShot("GameHistory");
+//
+//                openSpinSettingsTab();
+//                openAdvancedAutoplaySettings();
+//                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
+//
+//                setIfCashDecreasesValue();
+//                makeScreenShot("IfCashDecreases");
+//                closeAdvancedSettingValueWindow();
+//
+//                setIfSingleWinExceedsValue();
+//                makeScreenShot("IfSingleWinExceeds");
+//                closeAdvancedSettingValueWindow();
+//
+//                setIfCashInreasesValue();
+//                makeScreenShot("IfCashIncreases");
+//                closeAdvancedSettingValueWindow();
+//
                 openJMX();
                 setJMXOn("JMXFreeSpins+Wild");
                 closeJMX();
@@ -100,7 +104,7 @@ public class MobileLanguagesTest extends MobileGameActions {
                 setNeededGameMode("freespin1");
                 setJMXOn("JMXNoWin");
                 closeJMX();
-                clickFSIntroButton(188, 504);
+                clickFSIntroButton(205, 549);
                 waitFSIntoDisappears();
                 makeScreenShot("FSKeypad");
 
@@ -109,14 +113,14 @@ public class MobileLanguagesTest extends MobileGameActions {
                 waitFSOutroAppears();
                 makeScreenShot("FSOutro");
 
-                clickFSOutroButton(188, 504);
+                clickFSOutroButton(205, 549);
 //                enteringIdleState();
 
 //              FS Outro
 
                 openJMX();
                 setNeededGameMode("basic3");
-                setJMXOn("Freespins");
+                setJMXOn("JMXFreespins");
                 closeJMX();
                 clickSpinButton();
                 skipGameAnimations();
@@ -125,17 +129,17 @@ public class MobileLanguagesTest extends MobileGameActions {
                 setNeededGameMode("freespin1");
                 setJMXOn("JMXNoWin");
                 closeJMX();
-                clickFSIntroButton(188, 504);
+                clickFSIntroButton(205, 549);
                 waitFSOutroAppears();
                 makeScreenShot("FSOutroNoWin");
-                clickFSOutroButton(188, 504);
+                clickFSOutroButton(205, 549);
 //                enteringIdleState();
 
 //              Big Win text
 
                 openJMX();
                 setNeededGameMode("basic3");
-                setJMXOn("JMXBigWin");
+                setBigWinType("BigWin");
                 setJMXOn("JMXWildTop");
                 closeJMX();
                 clickSpinButton();
@@ -148,7 +152,7 @@ public class MobileLanguagesTest extends MobileGameActions {
 //              Mega Win text
 
                 openJMX();
-                setJMXOn("JMXMegaWin");
+                setBigWinType("MegaWin");
                 closeJMX();
                 clickSpinButton();
                 skipGameAnimations();
@@ -160,7 +164,7 @@ public class MobileLanguagesTest extends MobileGameActions {
 //              Super Mega Win text
 
                 openJMX();
-                setJMXOn("JMXSuperMegaWin");
+                setBigWinType("SuperMegaWin");
                 closeJMX();
                 clickSpinButton();
                 skipGameAnimations();

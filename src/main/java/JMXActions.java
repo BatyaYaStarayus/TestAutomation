@@ -44,6 +44,7 @@ public class JMXActions extends PagesActions {
         while (!getCurrentGameMode().equals(gameModeString + neededGameMode)) {
             setJMXOn("JMXGameMode");
         }
+        Thread.sleep(TIMEOUT);
     }
 
     protected String getBigWinType() {
