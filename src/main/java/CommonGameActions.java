@@ -1,5 +1,3 @@
-
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,7 +27,6 @@ public class CommonGameActions extends JMXActions {
     }
 
     public void waitFor(String eventKey) throws Exception {
-
         String result = "";
         String eventName = eventsMap.get(eventKey);
 
@@ -44,92 +41,57 @@ public class CommonGameActions extends JMXActions {
         while (!("true".equals(result))) {
             result = js.executeScript("return window.TEST_EVENT_FIRED").toString();
             Thread.sleep(TIMEOUT);
-
         }
-
-
-
     }
 
     protected void waitGameLoaded() throws Exception {
-
         this.waitFor("gameLoaded");
 //        added timeout for FSS appearance
         Thread.sleep(TIMEOUT*10);
-        System.out.println("Game is launched");
-
     }
 
-//    TODO just fix it later:)
-//    protected void waitSpinButtonIsClickableMobile() {
-//
-//        WebDriverWait wait = new WebDriverWait(driver,10);
-//        WebElement spinButtonMobile = wait.until(elementToBeClickable(By.id("spinButton")));
-//
-//    }
-
     protected void waitFSIntroAppears() throws Exception {
-
+        System.out.println(":)");
         this.waitFor("enteringFreeSpinIntroState");
         Thread.sleep(TIMEOUT);
-        System.out.println("FS Intro appeared");
-
+        System.out.println(":|");
     }
 
     protected void waitFSIntoDisappears() throws Exception {
-
         this.waitFor("leavingFreeSpinIntroState");
-        System.out.println("FS Intro disappeared");
-
     }
 
     protected void waitFSOutroAppears() throws Exception {
-
         this.waitFor("enteringFreeSpinOutroState");
-        System.out.println("FS Outro appeared");
-
     }
 
     protected void waitFSOutroDisappears() throws Exception {
-
         this.waitFor("leavingFreeSpinOutroState");
-        System.out.println("FS Outro disappeared");
-
     }
 
     protected void enteringIdleState() throws Exception {
-
         this.waitFor("enteringIdleState");
-        System.out.println("Entered Idle State");
-
     }
 
     protected void waitBigWinsCountUpCompleted() throws Exception {
-
         this.waitFor("bigWinTotalCountUpIsShown");
-
     }
 
     protected void enteringBigWinState() throws Exception {
-
+        System.out.println("1");
         this.waitFor("enteringBigWinState");
-
+        System.out.println("2");
     }
 
     protected void waitFSPopUpAppears() throws Exception {
-
         this.waitFor("enteringWildAnimationState");
-
     }
 
     protected void waitReelsAreSpinning() throws Exception {
-
         this.waitFor("spinStarted");
-
     }
 
     private void initEventsMap() {
-
         eventsMap.put("gameLoaded", "notify:stateHandler.leavingSetupGameState");
         eventsMap.put("roundStarted", "notify:spin.roundStart");
         eventsMap.put("reelsAnimationStopped", "notify:spin.spinAnimationComplete");
@@ -148,101 +110,73 @@ public class CommonGameActions extends JMXActions {
         eventsMap.put("enteringBigWinState", "notify:stateHandler.enteringBigWinState");
         eventsMap.put("enteringWildAnimationState", "notify:stateHandler.enteringWildAnimationState");
         eventsMap.put("spinStarted", "request:spin.startSpin");
-
     }
 
     protected void clickToEnableSounds () throws InterruptedException {
-
         WebElement disabledSoundsButton = driver.findElement(By.className("interface-soundSettings_audioOff_icon_uri"));
         disabledSoundsButton.click();
         Thread.sleep(TIMEOUT);
-
     }
 
     protected void clickToDisableSounds () throws InterruptedException {
-
         WebElement enabledSoundsButton = driver.findElement(By.className("interface-soundSettings_audioOn_icon_uri"));
         enabledSoundsButton.click();
         Thread.sleep(TIMEOUT);
-
     }
 
     protected void closeMessage() {
-
         //    WebElement popUp = driver.findElement(By.id("dialogWindowContainer"));
         WebElement continueButton = driver.findElement(By.xpath("//*[@value='Continue']"));
         continueButton.click();
-
     }
 
     private void getGettersMap() {
-
         gettersMap.put("balanceInCurrency", "Services.moneyManager.getBalanceCents()");
         gettersMap.put("betInCurrency", "Services.moneyManager.getBetCents()");
         gettersMap.put("winInCurrency", "Services.storage.readData(\"cashField.winInCents\")");
-
     }
 
     protected int getInCurrency(String eventKey) throws Exception {
-
         String result;
         String eventName = gettersMap.get(eventKey);
 
         result = js.executeScript("return " + eventName).toString();
 
-        System.out.println(result);
-
         return Integer.parseInt(result);
-
-        }
+    }
 
     protected int getBetInCurrency() throws Exception {
-
         return getInCurrency("betInCurrency");
-
     }
 
     protected int getBalanceInCurrency() throws Exception {
-
         return getInCurrency("balanceInCurrency");
-
     }
 
     protected int getWinInCurrency() throws Exception {
-
         return getInCurrency("winInCurrency");
-
     }
 
     protected int getBalanceAfterSpin() throws Exception {
-
         int balanceInCurrency = getBalanceInCurrency();
         int betInCurrency = getBetInCurrency();
 
-        int balanceAfterSpin = balanceInCurrency - betInCurrency;
-
-        return balanceAfterSpin;
-
+        return balanceInCurrency - betInCurrency;
     }
 
     protected void clickFSIntroButton (int positionX, int positionY) {
-
         clickOnElementByCoordinates(positionX, positionY);
-
     }
 
     protected void clickFSOutroButton(int positionX, int positionY) {
-
         clickOnElementByCoordinates(positionX, positionY);
-
     }
 
     protected void skipGameAnimations() {
-
-        clickOnElementByCoordinates(800, 800);
-
+//        for portrait
+//        clickOnElementByCoordinates(205, 549);
+//        for landscape
+        clickOnElementByCoordinates(300, 258);
+        System.out.println("Clicked");
     }
 }
-
-
-

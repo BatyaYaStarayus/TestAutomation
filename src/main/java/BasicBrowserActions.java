@@ -78,7 +78,11 @@ public class BasicBrowserActions {
 
     protected void initializeMobileDriver () {
 
-        mobileEmulation.put("deviceName", "Nexus 6");
+//        For portrait mode
+//        mobileEmulation.put("deviceName", "Nexus 6");
+
+//        For landscape mode
+        mobileEmulation.put("deviceName", "Nexus 7");
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = DesiredCapabilities.chrome();

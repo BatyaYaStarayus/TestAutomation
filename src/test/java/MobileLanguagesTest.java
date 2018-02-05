@@ -1,15 +1,4 @@
-
-
-
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ivan.kozlov on 24.02.2017.
@@ -18,176 +7,160 @@ public class MobileLanguagesTest extends MobileGameActions {
 
     @Test
     public void languagesTest() throws Exception {
-        initializeMobileDriver();
-
-//        Map<String, String> mobileEmulation = new HashMap<>();
-//        mobileEmulation.put("deviceName", "Nexus 10");
-//
-//        Map<String, Object> chromeOptions = new HashMap<>();
-//        chromeOptions.put("mobileEmulation", mobileEmulation);
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-//
-//        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
-//
-//        driver = new ChromeDriver(capabilities);
-//
-//        driver.get("http://sta-kiv-gt1-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-//
-//        driver.findElement(By.xpath("//input[@name='login']")).sendKeys("netent");
-//        driver.findElement(By.name("password")).sendKeys("netent");
-//        driver.findElement(By.xpath("//input[@value='Login']")).click();
-
-        openAndMaximiseBrowser();
-
-        getPage();
-        loginAdminPage("netent", "netent");
-//        loginTesterPage("stest6", "");
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
-            for (String gameId : gamesId) {
-                runGame(gameId);
-                waitGameLoaded();
 
-                makeScreenShot("Keypad");
+            runGame(gameId);
+            waitGameLoaded();
 
-                openGameSettings();
+            makeScreenShot("Keypad");
 
-                openSoundSettingsTab();
-                makeScreenShot("SoundSettings");
+//                openGameSettings();
+//
+//                openSpinSettingsTab();
+//
+//                goToLeftMostTab();
+//
+//                openSoundSettingsTab();
+//                makeScreenShot("SoundSettings");
+//
+//                openSpinSettingsTab();
+//                makeScreenShot("SpinSettings");
+//
+//                openBetSettingsTab();
+//                makeScreenShot("BetSettings");
+//
+//                openPaytableTab();
+//                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
+//
+//                openGameRulesTab();
+//                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
+//
+//                openGameHistoryTab();
+//                makeScreenShot("GameHistory");
+//
+//                openSpinSettingsTab();
+//                openAdvancedAutoplaySettings();
+//                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
+//
+//                setIfCashDecreasesValue();
+//                makeScreenShot("IfCashDecreases");
+//                closeAdvancedSettingValueWindow();
+//
+//                setIfSingleWinExceedsValue();
+//                makeScreenShot("IfSingleWinExceeds");
+//                closeAdvancedSettingValueWindow();
+//
+//                setIfCashInreasesValue();
+//                makeScreenShot("IfCashIncreases");
+//                closeAdvancedSettingValueWindow();
+//
+            openJMX();
+            setJMXOn("JMXFreeSpins+Wild");
+            closeJMX();
+            clickSpinButton();
 
-                openSpinSettingsTab();
-                makeScreenShot("SpinSettings");
-
-                openBetSettingsTab();
-                makeScreenShot("BetSettings");
-
-                openPaytableTab();
-                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
-
-                openGameRulesTab();
-                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
-
-                openGameHistoryTab();
-                makeScreenShot("GameHistory");
-
-                openSpinSettingsTab();
-                openAdvancedAutoplaySettings();
-                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
-
-                setIfCashDecreasesValue();
-                makeScreenShot("IfCashDecreases");
-                closeAdvancedSettingValueWindow();
-
-                setIfSingleWinExceedsValue();
-                makeScreenShot("IfSingleWinExceeds");
-                closeAdvancedSettingValueWindow();
-
-                setIfCashInreasesValue();
-                makeScreenShot("IfCashIncreases");
-                closeAdvancedSettingValueWindow();
-
-                openJMX();
-                setJMXOn("JMXFreeSpins+Wild");
-                closeJMX();
-                clickSpinButton();
-
-                waitFSPopUpAppears();
-                makeScreenShot("FSActivatedPopUp");
+            waitFSPopUpAppears();
+            makeScreenShot("FSActivatedPopUp");
 
 //              FS Intro
 
-                waitFSIntroAppears();
-                makeScreenShot("FSIntro");
+            waitFSIntroAppears();
+            makeScreenShot("FSIntro");
 
-                reload();
+            reload();
 
 //              FS Intro restored
 
-                waitFSIntroAppears();
-                makeScreenShot("FSIntroRestored");
+            waitFSIntroAppears();
+            makeScreenShot("FSIntroRestored");
 
 //              FS Keypad
 
-                openJMX();
-                setOneFreeSpinLeft();
-                setNeededGameMode("freespin1");
-                setJMXOn("JMXNoWin");
-                closeJMX();
-                clickFSIntroButton(188, 504);
-                waitFSIntoDisappears();
-                makeScreenShot("FSKeypad");
+            openJMX();
+            setOneFreeSpinLeft();
+            setNeededGameMode("freespin1");
+            setJMXOn("JMXNoWin");
+            closeJMX();
+//          For portrait mode
+//            clickFSIntroButton(205, 549);
+
+//            For landscape mode
+            clickFSIntroButton(300, 258);
+            waitFSIntoDisappears();
+            makeScreenShot("FSKeypad");
 
 //              FS Outro
 
-                waitFSOutroAppears();
-                makeScreenShot("FSOutro");
+            waitFSOutroAppears();
+            makeScreenShot("FSOutro");
 
-                clickFSOutroButton(188, 504);
+//          For portrait mode
+//            clickFSOutroButton(205, 549);
+
+            clickFSOutroButton(300, 258);
 //                enteringIdleState();
 
 //              FS Outro
 
-                openJMX();
-                setNeededGameMode("basic3");
-                setJMXOn("Freespins");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                waitFSIntroAppears();
-                openJMX();
-                setNeededGameMode("freespin1");
-                setJMXOn("JMXNoWin");
-                closeJMX();
-                clickFSIntroButton(188, 504);
-                waitFSOutroAppears();
-                makeScreenShot("FSOutroNoWin");
-                clickFSOutroButton(188, 504);
+            openJMX();
+            setNeededGameMode("basic3");
+            setJMXOn("JMXFreespins");
+            closeJMX();
+            clickSpinButton();
+            skipGameAnimations();
+            waitFSIntroAppears();
+            openJMX();
+            setNeededGameMode("freespin1");
+            setJMXOn("JMXNoWin");
+            closeJMX();
+            clickFSIntroButton(300, 258);
+            waitFSOutroAppears();
+            makeScreenShot("FSOutroNoWin");
+            clickFSOutroButton(300, 258);
 //                enteringIdleState();
 
 //              Big Win text
 
-                openJMX();
-                setNeededGameMode("basic3");
-                setJMXOn("JMXBigWin");
-                setJMXOn("JMXWildTop");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("BigWin");
+            openJMX();
+            setNeededGameMode("basic3");
+            setBigWinType("BigWin");
+            setJMXOn("JMXWildTop");
+            closeJMX();
+            clickSpinButton();
+            skipGameAnimations();
+            enteringBigWinState();
+            skipGameAnimations();
+            makeScreenShot("BigWin");
 //                enteringIdleState();
 
 //              Mega Win text
 
-                openJMX();
-                setJMXOn("JMXMegaWin");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("MegaWin");
-                enteringIdleState();
+            openJMX();
+            setBigWinType("MegaWin");
+            closeJMX();
+            clickSpinButton();
+            skipGameAnimations();
+            enteringBigWinState();
+            skipGameAnimations();
+            makeScreenShot("MegaWin");
+            enteringIdleState();
 
 //              Super Mega Win text
 
-                openJMX();
-                setJMXOn("JMXSuperMegaWin");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("SuperMegaWin");
-                enteringIdleState();
+            openJMX();
+            setBigWinType("SuperMegaWin");
+            closeJMX();
+            clickSpinButton();
+            skipGameAnimations();
+            enteringBigWinState();
+            skipGameAnimations();
+            makeScreenShot("SuperMegaWin");
+            enteringIdleState();
 
-                driver.navigate().back();
-            }
+            driver.navigate().back();
         }
-
         logoutTesterPage();
     }
 }

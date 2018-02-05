@@ -1,5 +1,3 @@
-
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -21,73 +19,74 @@ public class PagesActions extends BasicBrowserActions {
 
     protected static final int TIMEOUT = 1000;
 
-//    public String[] LANGUAGES = {"bg"};
+    protected static final String ADMINPAGEUSER = "netent";
+    protected static final String ADMINPAGEPASSWORD = "netent";
+
+    protected static final String TESTERPAGEUSER = "stest6";
+    protected static final String TESTERPAGEPASSWORD = "";
+
+    protected static final String DESKTOPCHANNEL = "bbg";
+    protected static final String MOBILECHANNEL = "mobg";
+
+//    TODO add languages to Jenkins job parameters
+
     public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
-    public String[] gamesId = System.getProperty("GameId").split(",");
-//    public String[] gamesId = {"neonstaxx_not_mobile"};
+    public String gameId = System.getProperty("GameId");
 
 //    admin page actions
 
     protected void login(String user, String password, WebElement userField, WebElement passwordField, WebElement loginButton) {
-
-//        userField.click();
+//      userField.click();
         userField.sendKeys(user);
-
-//        passwordField.click();
+//      passwordField.click();
         passwordField.sendKeys(password);
-
-//      for desktop
         loginButton.click();
+    }
 
-//      for mobile
-        loginButton.submit();
+    protected void setChannel(String channel) {
+        WebElement channelDropdownList = driver.findElement(By.id("type"));
 
+        Select selectChannel = new Select(channelDropdownList);
+        selectChannel.selectByValue(channel);
     }
 
 //    admin page actions
 
-    protected void loginAdminPage(String user, String password) throws InterruptedException {
-
+    protected void loginAdminPage() throws InterruptedException {
         WebElement userField = driver.findElement(By.xpath("//input[@name='login']"));
         WebElement passwordField = driver.findElement(By.xpath("//input[@name='password']"));
         WebElement loginButton = driver.findElement(By.xpath("//*[@value='Login']"));
 
-        login(user, password, userField, passwordField, loginButton);
-
+        login(ADMINPAGEUSER, ADMINPAGEPASSWORD, userField, passwordField, loginButton);
     }
 
 //    tester page actions
 
-    protected void loginTesterPage(String user, String password) throws InterruptedException {
-
+    protected void loginTesterPage(String channel) throws InterruptedException {
         WebElement userField = driver.findElement(By.xpath("//*[@id=\"defaultForm\"]/input[1]"));
         WebElement passwordField = driver.findElement(By.xpath("//*[@id=\"defaultForm\"]/input[2]"));
         WebElement loginButton = driver.findElement(By.xpath("//*[@value='login']"));
 
-        login(user, password, userField, passwordField, loginButton);
+        setChannel(channel);
+
+        login(TESTERPAGEUSER, TESTERPAGEPASSWORD, userField, passwordField, loginButton);
     }
 
     protected void logoutTesterPage() throws InterruptedException {
-
         WebElement logoutButtonTesterPage = driver.findElement(By.xpath("//*[@value='logout']"));
         logoutButtonTesterPage.click();
-
     }
 
     protected void runGame(String gameId) {
-
         WebElement game = driver.findElement(By.xpath("//*[.='" + gameId + "']"));
         game.click();
-
     }
 
     protected void selectLanguage(String language) {
-
         WebElement languageDropDownList = driver.findElement(By.id("languageid"));
 
         Select selectLanguage = new Select(languageDropDownList);
         selectLanguage.selectByValue(language);
-
     }
 
 //  tried to make screenshots of canvas
@@ -95,9 +94,9 @@ public class PagesActions extends BasicBrowserActions {
     protected void makeScreenShot(String testedElement, String device) throws IOException, InterruptedException {
         Thread.sleep(TIMEOUT);
         File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(srcFile, new File("C://Screenshots/" + Arrays.toString(gamesId) + "/"
+        FileUtils.copyFile(srcFile, new File("C://Screenshots/" + gameId + "/"
                 + getCurrentDateAndTime() + "/" + device + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
-        FileUtils.copyFile(srcFile, new File("S://SmokinAces/Screenshots/" + Arrays.toString(gamesId) + "/"
+        FileUtils.copyFile(srcFile, new File("S://SmokinAces/Screenshots/" + gameId + "/"
                 + getCurrentDateAndTime() + "/" + device + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
         Thread.sleep(TIMEOUT);
     }
@@ -116,7 +115,6 @@ public class PagesActions extends BasicBrowserActions {
     }
 
     protected String getCurrentDateAndTime() {
-
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDateAndTime = new Date();
 
@@ -161,7 +159,5 @@ public class PagesActions extends BasicBrowserActions {
             makeScreenShot((elementId + "/Page" + (i + 1)), device);
             scrollPageOnScreenHeight();
         }
-
     }
-
 }
