@@ -27,6 +27,8 @@ public class BasicBrowserActions {
     protected Map<String, String> mobileEmulation = new HashMap<>();
     protected Map<String, Object> chromeOptions = new HashMap<>();
 
+    protected String portraitOrientation = "portrait-primary";
+
     @After
     public void tearDown() {
         driver.close();
@@ -35,13 +37,11 @@ public class BasicBrowserActions {
 //    Initializing Drivers and jsExecutor
 
     protected void initializeJSExecutor() {
-
         if (driver instanceof JavascriptExecutor) {
             js = (JavascriptExecutor) driver;
         }else{
             throw new ClassCastException("Driver is not an instance of JavascriptExecutor");
         }
-
     }
 
     protected void initializeDesktopDriver(String browser) {
@@ -57,13 +57,11 @@ public class BasicBrowserActions {
                 break;
 
             case "Explorer":
-
                 driver = new InternetExplorerDriver();
                 //@TODO add link
                 break;
 
             case "Safari":
-
                 driver = new SafariDriver();
                 //@TODO add link
                 break;
@@ -76,28 +74,24 @@ public class BasicBrowserActions {
 
     }
 
-    protected void initializeMobileDriver () {
-
-//        For portrait mode
-//        mobileEmulation.put("deviceName", "Nexus 6");
-
-//        For landscape mode
-        mobileEmulation.put("deviceName", "Nexus 7");
+    protected void initializeMobileDriver (String device) {
+        mobileEmulation.put("deviceName", device);
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-//        TODO try iOS and safari
-//        capabilities.setCapability(CapabilityType.BROWSER_NAME, "iOS");
-//        capabilities.setCapability(CapabilityType.VERSION, "10.0");
-
         driver = new ChromeDriver(capabilities);
 
         initializeJSExecutor();
+    }
 
-        System.out.println("Mobile driver initialized");
+    protected void initializeLandscapeOrientedMobileDriver() {
+        initializeMobileDriver("Nexus 7");
+    }
 
+    protected void initializePortraitOrientedMobileDriver() {
+        initializeMobileDriver("Nexus 6");
     }
 
 //    Browser actions
@@ -149,9 +143,14 @@ public class BasicBrowserActions {
 
     }
 
-//    TODO try more than 1 device
-//    protected void devicesForEmulation() {
-//        mobileEmulation.put("deviceName", "Google Nexus 6");
-//    }
+    protected String getScreenOrientation() {
+        return (String) js.executeScript("return window.screen.orientation.type");
+    }
+
+    protected boolean isPortraitOrientation() {
+        return getScreenOrientation().equals(portraitOrientation);
+    }
+
+
 
 }

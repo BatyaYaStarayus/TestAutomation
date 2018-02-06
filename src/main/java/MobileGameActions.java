@@ -13,7 +13,7 @@ public class MobileGameActions extends CommonGameActions{
     @Before
 
     public void prepareToLaunchGameMobile() throws InterruptedException {
-        initializeMobileDriver();
+        initializeMobileDriver("Nexus 6");
         openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
@@ -92,4 +92,13 @@ public class MobileGameActions extends CommonGameActions{
         clickOnElementByClassName("button cancelButton hover");
     }
 
+//    Create JSON file and parse it
+
+//    protected void clickFSIntroButton() {
+//        if (isPortraitOrientation()) {
+//            clickOnElementByCoordinates(coords for portrait from JSON);
+//        } else {
+//            clickOnElementByCoordinates(coords for landscape from JSON);
+//        }
+//    }
 }
