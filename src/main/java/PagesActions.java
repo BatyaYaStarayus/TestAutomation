@@ -160,4 +160,19 @@ public class PagesActions extends BasicBrowserActions {
             scrollPageOnScreenHeight();
         }
     }
+
+    protected boolean checkForWrongElements() {
+        String undefinegString = "undefined";
+        String notFoundString = "notFound";
+        String tags = "\"<[^>]*>\"";
+
+        String[] wrongElelementsArray = {undefinegString, notFoundString, tags};
+
+        for(int i = 0; i < wrongElelementsArray.length; i++) {
+            if(driver.getPageSource().contains(wrongElelementsArray[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
