@@ -20,6 +20,8 @@ public class CommonGameActions extends JMXActions {
     private Map<String, String> eventsMap = new HashMap<>();
     private Map<String, String> gettersMap = new HashMap<>();
 
+    protected final String[] BIGWINTYPES = {"BigWin", "MegaWin", "SuperNegaWin"};
+
     public CommonGameActions() {
         super();
         this.initEventsMap();

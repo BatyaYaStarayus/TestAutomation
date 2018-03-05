@@ -6,12 +6,12 @@ import org.junit.Test;
 /**
  * Created by ivan.kozlov on 15.03.2017.
  */
-public class TestMobile extends CommonGameActions {
+public class CommonMobileTest extends MobileGameActions {
 
     @Test
     public void myMobileTest() throws Exception{
 
-        initializeMobileDriver();
+//        initializeMobileDriver();
 //        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();

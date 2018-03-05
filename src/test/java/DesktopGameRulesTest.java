@@ -10,7 +10,7 @@ public class DesktopGameRulesTest extends DesktopGameActions {
     public void gameRulesTest() throws Exception {
             runGame(gameId);
             waitGameLoaded();
-            clickButtonFSS(850, 850);
+            closeFSS();
             openAutoplaySettings();
             autoplayAndVerification(10);
             enteringIdleState();

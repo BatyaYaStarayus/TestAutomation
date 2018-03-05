@@ -26,6 +26,9 @@ public class BasicBrowserActions {
     protected Map<String, String> mobileEmulation = new HashMap<>();
     protected Map<String, Object> chromeOptions = new HashMap<>();
 
+    protected final String PORTRAITMOBILEDEVICE = "Nexus 7";
+    protected final String LANDSCAPEMOBILEDEVICE = "Nexus 10";
+
     @After
     public void tearDown() {
         driver.close();
@@ -73,9 +76,9 @@ public class BasicBrowserActions {
 
     }
 
-    protected void initializeMobileDriver () {
+    protected void initializeMobileDriver (String device) {
 
-        mobileEmulation.put("deviceName", "Nexus 7");
+        mobileEmulation.put("deviceName", device);
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = DesiredCapabilities.chrome();
@@ -91,6 +94,14 @@ public class BasicBrowserActions {
 
         System.out.println("Mobile driver initialized");
 
+    }
+
+    protected void initializeMobileDriverPortrait() {
+        initializeMobileDriver(PORTRAITMOBILEDEVICE);
+    }
+
+    protected void initializeMobileDriverLandscape() {
+        initializeMobileDriver(LANDSCAPEMOBILEDEVICE);
     }
 
 
@@ -109,6 +120,10 @@ public class BasicBrowserActions {
         driver.navigate().refresh();
     }
 
+    protected void goToPreviosPage () {
+        driver.navigate().back();
+    }
+
     protected void clickOnElementByClassName(String elementClassName) {
         WebElement element = driver.findElement(By.className(elementClassName));
         element.click();
@@ -123,5 +138,9 @@ public class BasicBrowserActions {
         WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
         Actions hoverElement = new Actions(driver);
         hoverElement.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+    }
+
+    protected void executeJSScript(String JSscript) {
+        js.executeScript("return" + JSscript);
     }
 }

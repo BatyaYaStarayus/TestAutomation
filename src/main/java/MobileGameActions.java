@@ -10,17 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.util.List;
 
-public class MobileGameActions extends CommonGameActions{
-
-    @Before
-
-    public void prepareToLaunchGameMobile() throws InterruptedException {
-        initializeMobileDriver();
-//        openAndMaximiseBrowser();
-        getPage();
-        loginAdminPage();
-        loginTesterPage(MOBILECHANNEL);
-    }
+public class MobileGameActions extends GameActionsViaRequests{
 
     protected void makeScreenShot(String testedElement) throws IOException, InterruptedException {
         makeScreenShot(testedElement, "Mobile");
@@ -28,45 +18,35 @@ public class MobileGameActions extends CommonGameActions{
 
     protected void openGameSettings() throws InterruptedException {
         clickOnElementByClassName("interface-settingsButton_baseButton");
-        Thread.sleep(TIMEOUT*10);
     }
 
-    protected void goToLeftMostTab() throws InterruptedException {
-        js.executeScript("return document.getElementsByClassName('interface-settingsMenu_children')[0].style.transform = 'translate(180px, 0px)'");
-        Thread.sleep(TIMEOUT*10);
+    protected void closeGameSettings() throws InterruptedException {
+        clickOnElementByClassName("interface-settingsButton_baseButton");
     }
 
-    protected void openSoundSettingsTab() {
+    protected void openSoundSettings() {
         clickOnElementByClassName("interface-settingsMenu_child_soundSettings_uri");
     }
 
-    protected void openSpinSettingsTab() throws InterruptedException {
+    protected void openSpinSettings() throws InterruptedException {
         clickOnElementByClassName("interface-settingsMenu_child_spinSettings_uri");
 
         Thread.sleep(TIMEOUT*5);
     }
 
-    protected void openBetSettingsTab() {
+    protected void openBetSettings() {
         clickOnElementByClassName("interface-settingsMenu_child_betSettings_uri");
     }
 
     protected void openPaytableTab() {
-//        WebDriverWait wait= new WebDriverWait(driver, 10);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(
-//                By.xpath("//*[@id='gameWrapper']//*[contains(@class,'interface-settingsMenu_child_base')]")));
-//        String tabsXpath = "//*[@id='gameWrapper']//*[contains(@class,'interface-settingsMenu_child_base')]";
-//        List<WebElement> buttons = driver.findElements(By.xpath(tabsXpath));
-//        Actions actions = new Actions(driver);
-//            actions.moveToElement(buttons.get(3)).click().perform();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paytable")));
         clickOnElementByClassName("interface-settingsMenu_child_paytable_uri");
     }
 
-    protected void openGameRulesTab() {
+    protected void openGameRules() {
         clickOnElementByClassName("interface-settingsMenu_child_gameRules_uri");
     }
 
-    protected void openGameHistoryTab() {
+    protected void openGameHistory() {
         clickOnElementByClassName("interface-settingsMenu_child_gameHistory_uri");
     }
 

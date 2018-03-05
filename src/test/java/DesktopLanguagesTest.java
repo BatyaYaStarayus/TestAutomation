@@ -16,11 +16,11 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 runGame(gameId);
                 waitGameLoaded();
 
-                changePagesAndMakeScreenShots("FSS", 798, 673, 3, 35);
+                changePagesAndMakeScreenShotsFSS(3,5);
 
                 clickToDisableSounds();
 
-                clickButtonFSS(959, 801);
+                closeFSS();
                 makeScreenShot("Keypad");
 
                 openGameSettings();
@@ -34,8 +34,8 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 
                 closeAutoplaySettings();
 
-                openPaytable(132, 863);
-                changePagesAndMakeScreenShots("Paytable", 649, 694, 10, 40);
+                showPaytable();
+                changePagesAndMakeScreenShotsPaytable(10);
 
 //                TODO fix scrolling build 106 output
                 openGameRules();
@@ -48,8 +48,8 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 openJMX();
                 setJMXOn("JMXFreeSpins+Wild");
                 closeJMX();
-                clickSpinButton(959, 863);
-                clickSpinButton(959, 863);
+                startSpin();
+                quickStop();
                 skipGameAnimations();
 
                 waitFSPopUpAppears();
@@ -83,7 +83,7 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 waitFSOutroAppears();
                 makeScreenShot("FSOutro");
 
-                clickFSOutroButton(832, 702);
+                closeFSOutro();
 //                waitFSOutroDisappears();
 //                enteringIdleState();
 
@@ -93,7 +93,7 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 setNeededGameMode("basic3");
                 setJMXOn("JMXFreespins");
                 closeJMX();
-                clickSpinButton(959, 863);
+                startSpin();
                 skipGameAnimations();
                 waitFSIntroAppears();
 
@@ -108,50 +108,62 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 makeScreenShot("FSOutroNoWin");
 
 //              TODO add FS intro button coordinates
-                clickFSOutroButton(832, 702);
-//                waitFSOutroDisappears();
-//                enteringIdleState();
+                closeFSOutro();
 
 //              Big Win text
 
                 openJMX();
                 setNeededGameMode("basic3");
-                setBigWinType("BigWin");
 //              to avoid wilds
                 setJMXOn("JMXWildTop");
                 closeJMX();
-                clickSpinButton(959, 863);
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("BigWin");
-                enteringIdleState();
 
-//              Mega Win text
+                for(String allBigWinTypes : BIGWINTYPES) {
+                    openJMX();
+                    setBigWinType(allBigWinTypes);
+                    closeJMX();
+                    startSpin();
+                    skipGameAnimations();
+                    enteringBigWinState();
+                    skipGameAnimations();
+                    makeScreenShot(allBigWinTypes);
+                    enteringIdleState();
+                }
 
-                openJMX();
-                setBigWinType("MegaWin");
-                closeJMX();
-                clickSpinButton(959, 863);
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("MegaWin");
-                enteringIdleState();
+//                setBigWinType("BigWin");
+//                closeJMX();
+//                startSpin();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("BigWin");
+//                enteringIdleState();
+//
+////              Mega Win text
+//
+//                openJMX();
+//                setBigWinType("MegaWin");
+//                closeJMX();
+//                startSpin();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("MegaWin");
+//                enteringIdleState();
+//
+////              Super Mega Win text
+//
+//                openJMX();
+//                setBigWinType("SuperMegaWin");
+//                closeJMX();
+//                startSpin();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("SuperMegaWin");
+//                enteringIdleState();
 
-//              Super Mega Win text
-
-                openJMX();
-                setBigWinType("SuperMegaWin");
-                closeJMX();
-                clickSpinButton(959, 863);
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("SuperMegaWin");
-                enteringIdleState();
-
-                driver.navigate().back();
+                goToPreviosPage();
         }
 
         logoutTesterPage();

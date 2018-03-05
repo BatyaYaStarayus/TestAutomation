@@ -3,10 +3,11 @@ import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import sun.awt.windows.ThemeReader;
 
 import java.io.IOException;
 
-public class DesktopGameActions extends CommonGameActions {
+public class DesktopGameActions extends GameActionsViaRequests {
 
     @Before
 
@@ -30,17 +31,38 @@ public class DesktopGameActions extends CommonGameActions {
         clickOnElementByCoordinates(positionX, positionY);
     }
 
-    protected void changePagesAndMakeScreenShots (String openedElement, int positionX, int positionY, int pagesAmount, int distanceBetweenIndicators) throws IOException, InterruptedException {
-        WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
-        Actions hoverFirstPageIndicator = new Actions(driver);
-        hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+//    via clicking buttons
 
-        for (int i = 0; i < pagesAmount; i++, positionX += distanceBetweenIndicators) {
-            hoverFirstPageIndicator = new Actions(driver);
-            hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
-            makeScreenShot(openedElement + "/Page" + (i + 1) );
+//    protected void changePagesAndMakeScreenShots (String openedElement, int positionX, int positionY, int pagesAmount, int distanceBetweenIndicators) throws IOException, InterruptedException {
+//        WebElement canvasGameArea = driver.findElement(By.id("canvasAnimationManager"));
+//        Actions hoverFirstPageIndicator = new Actions(driver);
+//        hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+//
+//        for (int i = 0; i < pagesAmount; i++, positionX += distanceBetweenIndicators) {
+//            hoverFirstPageIndicator = new Actions(driver);
+//            hoverFirstPageIndicator.moveToElement(canvasGameArea, positionX, positionY).click().perform();
+//            makeScreenShot(openedElement + "/Page" + (i + 1) );
+//        }
+//    }
+
+//    via requests
+
+    protected void changePagesAndMakeScreenShotsFSS(int pagesAmount, int timeoutSeconds) throws IOException, InterruptedException {
+        for (int i = 0; i < pagesAmount; i++) {
+            Thread.sleep(100*timeoutSeconds);
+            makeScreenShot("FSS/Page" + (i + 1) );
         }
     }
+
+    protected void changePagesAndMakeScreenShotsPaytable(int pagesAmount) throws IOException, InterruptedException {
+        for (int i = 0; i < pagesAmount; i++) {
+            showNextPagePaytable();
+            makeScreenShot("Paytable/Page" + (i + 1) );
+        }
+    }
+
+
+
 
     protected void openGameRules() throws InterruptedException {
         clickOnElementByClassName("interface-gameRules_icon_uri");

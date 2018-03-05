@@ -6,28 +6,10 @@ import org.junit.Test;
 /**
  * Created by ivan.kozlov on 24.02.2017.
  */
-public class MobileLanguagesTest extends MobileGameActions {
+public class MobileLanguagesTest extends PortraitMobileActions {
 
     @Test
     public void languagesTest() throws Exception {
-
-//        Map<String, String> mobileEmulation = new HashMap<>();
-//        mobileEmulation.put("deviceName", "Nexus 10");
-//
-//        Map<String, Object> chromeOptions = new HashMap<>();
-//        chromeOptions.put("mobileEmulation", mobileEmulation);
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-//
-//        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
-//
-//        driver = new ChromeDriver(capabilities);
-//
-//        driver.get("http://sta-kiv-gt1-setup01-spp-01.nix.cydmodule.com:8080/admin/tester.jsp");
-//
-//        driver.findElement(By.xpath("//input[@name='login']")).sendKeys("netent");
-//        driver.findElement(By.name("password")).sendKeys("netent");
-//        driver.findElement(By.xpath("//input[@value='Login']")).click();
 
         for (String allLanguagesArray : LANGUAGES) {
             selectLanguage(allLanguagesArray);
@@ -37,45 +19,43 @@ public class MobileLanguagesTest extends MobileGameActions {
 
                 makeScreenShot("Keypad");
 
-//                openGameSettings();
-//
-//                openSpinSettingsTab();
-//
-//                goToLeftMostTab();
-//
-//                openSoundSettingsTab();
-//                makeScreenShot("SoundSettings");
-//
-//                openSpinSettingsTab();
-//                makeScreenShot("SpinSettings");
-//
-//                openBetSettingsTab();
-//                makeScreenShot("BetSettings");
-//
-//                openPaytableTab();
-//                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
-//
-//                openGameRulesTab();
-//                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
-//
-//                openGameHistoryTab();
-//                makeScreenShot("GameHistory");
-//
-//                openSpinSettingsTab();
-//                openAdvancedAutoplaySettings();
-//                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
-//
-//                setIfCashDecreasesValue();
-//                makeScreenShot("IfCashDecreases");
-//                closeAdvancedSettingValueWindow();
-//
-//                setIfSingleWinExceedsValue();
-//                makeScreenShot("IfSingleWinExceeds");
-//                closeAdvancedSettingValueWindow();
-//
-//                setIfCashInreasesValue();
-//                makeScreenShot("IfCashIncreases");
-//                closeAdvancedSettingValueWindow();
+                openGameSettings();
+
+                openSoundSettingsTab();
+                makeScreenShot("SoundSettings");
+
+                openSpinSettingsTab();
+                makeScreenShot("SpinSettings");
+
+                openBetSettingsTab();
+                makeScreenShot("BetSettings");
+
+                openPaytableTab();
+                makeScreenShotsOfAllPageParts("Paytable", "Mobile");
+
+                openGameRulesTab();
+                makeScreenShotsOfAllPageParts("GameRules", "Mobile");
+
+                openGameHistoryTab();
+                makeScreenShot("GameHistory");
+
+                openSpinSettingsTab();
+                openAdvancedAutoplaySettings();
+                makeScreenShotsOfAllPageParts("AdvancedAutoplayOptions", "Mobile");
+
+                setIfCashDecreasesValue();
+                makeScreenShot("IfCashDecreases");
+                closeAdvancedSettingValueWindow();
+
+                setIfSingleWinExceedsValue();
+                makeScreenShot("IfSingleWinExceeds");
+                closeAdvancedSettingValueWindow();
+
+                setIfCashInreasesValue();
+                makeScreenShot("IfCashIncreases");
+                closeAdvancedSettingValueWindow();
+
+
 //
                 openJMX();
                 setJMXOn("JMXFreeSpins+Wild");
@@ -104,7 +84,8 @@ public class MobileLanguagesTest extends MobileGameActions {
                 setNeededGameMode("freespin1");
                 setJMXOn("JMXNoWin");
                 closeJMX();
-                clickFSIntroButton(205, 549);
+//                clickFSIntroButton(205, 549);
+                startFS();
                 waitFSIntoDisappears();
                 makeScreenShot("FSKeypad");
 
@@ -113,7 +94,9 @@ public class MobileLanguagesTest extends MobileGameActions {
                 waitFSOutroAppears();
                 makeScreenShot("FSOutro");
 
-                clickFSOutroButton(205, 549);
+                closeFSOutro();
+
+//                clickFSOutroButton(205, 549);
 //                enteringIdleState();
 
 //              FS Outro
@@ -129,51 +112,67 @@ public class MobileLanguagesTest extends MobileGameActions {
                 setNeededGameMode("freespin1");
                 setJMXOn("JMXNoWin");
                 closeJMX();
-                clickFSIntroButton(205, 549);
+                startFS();
+//                clickFSIntroButton(205, 549);
                 waitFSOutroAppears();
                 makeScreenShot("FSOutroNoWin");
-                clickFSOutroButton(205, 549);
+                closeFSOutro();
+//                clickFSOutroButton(205, 549);
 //                enteringIdleState();
 
 //              Big Win text
 
                 openJMX();
                 setNeededGameMode("basic3");
-                setBigWinType("BigWin");
                 setJMXOn("JMXWildTop");
                 closeJMX();
-                clickSpinButton();
+
+            for(String allBigWinTypes : BIGWINTYPES) {
+                openJMX();
+                setBigWinType(allBigWinTypes);
+                closeJMX();
+                startSpin();
                 skipGameAnimations();
                 enteringBigWinState();
                 skipGameAnimations();
-                makeScreenShot("BigWin");
+                makeScreenShot(allBigWinTypes);
+                enteringIdleState();
+            }
+
+//                setBigWinType("BigWin");
+//                closeJMX();
+//                clickSpinButton();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("BigWin");
+////                enteringIdleState();
+//
+////              Mega Win text
+//
+//                openJMX();
+//                setBigWinType("MegaWin");
+//                closeJMX();
+//                clickSpinButton();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("MegaWin");
+//                enteringIdleState();
+//
+////              Super Mega Win text
+//
+//                openJMX();
+//                setBigWinType("SuperMegaWin");
+//                closeJMX();
+//                clickSpinButton();
+//                skipGameAnimations();
+//                enteringBigWinState();
+//                skipGameAnimations();
+//                makeScreenShot("SuperMegaWin");
 //                enteringIdleState();
 
-//              Mega Win text
-
-                openJMX();
-                setBigWinType("MegaWin");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("MegaWin");
-                enteringIdleState();
-
-//              Super Mega Win text
-
-                openJMX();
-                setBigWinType("SuperMegaWin");
-                closeJMX();
-                clickSpinButton();
-                skipGameAnimations();
-                enteringBigWinState();
-                skipGameAnimations();
-                makeScreenShot("SuperMegaWin");
-                enteringIdleState();
-
-                driver.navigate().back();
+                goToPreviosPage();
         }
         logoutTesterPage();
     }
