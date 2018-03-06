@@ -32,7 +32,7 @@ public class PagesActions extends BasicBrowserActions {
 
 //    TODO add languages to Jenkins job parameters
 
-    public String[] LANGUAGES = {"bg", "br", "cn", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr", "hu", "it", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", "tr"};
+    public String[] languages = System.getProperty("Languages").split(",");
     public String gameId = System.getProperty("GameId");
 
 //    admin page actions
@@ -94,13 +94,11 @@ public class PagesActions extends BasicBrowserActions {
 //  tried to make screenshots of canvas
 
     protected void makeScreenShot(String testedElement, String device) throws IOException, InterruptedException {
-        Thread.sleep(TIMEOUT);
         File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile, new File("C://Screenshots/" + gameId + "/"
                 + getCurrentDateAndTime() + "/" + device + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
         FileUtils.copyFile(srcFile, new File("S://SmokinAces/Screenshots/" + gameId + "/"
                 + getCurrentDateAndTime() + "/" + device + "/" + testedElement + "/" + getCurrentLanguage() + ".png"));
-        Thread.sleep(TIMEOUT);
     }
 
     protected String getCurrentLanguage() {

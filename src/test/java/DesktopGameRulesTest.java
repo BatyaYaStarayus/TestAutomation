@@ -11,11 +11,7 @@ public class DesktopGameRulesTest extends DesktopGameActions {
             runGame(gameId);
             waitGameLoaded();
             closeFSS();
-            openAutoplaySettings();
-            autoplayAndVerification(10);
-            enteringIdleState();
-            openGameRules();
-            Thread.sleep(TIMEOUT);
+            startSpin();
     }
 
 }

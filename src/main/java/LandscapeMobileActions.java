@@ -6,10 +6,21 @@ public class LandscapeMobileActions extends MobileGameActions{
 
     public void prepareToLaunchGameMobile() throws InterruptedException {
         initializeMobileDriverLandscape();
-//        openAndMaximiseBrowser();
+        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
         loginTesterPage(MOBILECHANNEL);
     }
 
+    protected void clickFSIntroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateXMobileLandscape,
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateYMobileLandscape);
+    }
+
+    protected void clickFSOutroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateXMobileLandscape,
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateYMobileLandscape);
+    }
 }

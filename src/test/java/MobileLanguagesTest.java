@@ -11,7 +11,7 @@ public class MobileLanguagesTest extends PortraitMobileActions {
     @Test
     public void languagesTest() throws Exception {
 
-        for (String allLanguagesArray : LANGUAGES) {
+        for (String allLanguagesArray : languages) {
             selectLanguage(allLanguagesArray);
 
                 runGame(gameId);

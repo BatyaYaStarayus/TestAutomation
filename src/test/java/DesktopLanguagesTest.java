@@ -11,12 +11,12 @@ public class DesktopLanguagesTest extends DesktopGameActions {
     @Test
     public void languagesTest() throws Exception {
 
-        for (String allLanguagesArray : LANGUAGES) {
+        for (String allLanguagesArray : languages) {
             selectLanguage(allLanguagesArray);
                 runGame(gameId);
                 waitGameLoaded();
 
-                changePagesAndMakeScreenShotsFSS(3,5);
+                changePagesAndMakeScreenShotsFSS(3,8);
 
                 clickToDisableSounds();
 
@@ -36,12 +36,14 @@ public class DesktopLanguagesTest extends DesktopGameActions {
 
                 showPaytable();
                 changePagesAndMakeScreenShotsPaytable(10);
+                hidePaytable();
 
-//                TODO fix scrolling build 106 output
-                openGameRules();
-                makeScreenShotsOfAllPageParts("GameRules", "Desktop");
 
-                closeGameRules();
+////                TODO fix scrolling build 106 output
+//                openGameRules();
+//                makeScreenShotsOfAllPageParts("GameRules", "Desktop");
+//
+//                closeGameRules();
 
 //              FS activated pop-up
 
@@ -73,8 +75,8 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 setOneFreeSpinLeft();
                 closeJMX();
 //              TODO add FS intro button coordinates
-                clickFSIntroButton(832, 702);
-                waitFSIntoDisappears();
+                clickFSIntroButton();
+//                waitFSIntoDisappears();
                 waitReelsAreSpinning();
                 makeScreenShot("FSKeypad");
 
@@ -83,7 +85,7 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 waitFSOutroAppears();
                 makeScreenShot("FSOutro");
 
-                closeFSOutro();
+                clickFSOutroButton();
 //                waitFSOutroDisappears();
 //                enteringIdleState();
 
@@ -103,12 +105,12 @@ public class DesktopLanguagesTest extends DesktopGameActions {
                 closeJMX();
 
 //              TODO add FS intro button coordinates
-                clickFSIntroButton(832, 702);
+                clickFSIntroButton();
                 waitFSOutroAppears();
                 makeScreenShot("FSOutroNoWin");
 
 //              TODO add FS intro button coordinates
-                closeFSOutro();
+                clickFSOutroButton();
 
 //              Big Win text
 

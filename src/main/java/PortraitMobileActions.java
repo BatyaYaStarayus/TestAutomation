@@ -6,10 +6,22 @@ public class PortraitMobileActions extends MobileGameActions{
 
     public void prepareToLaunchGameMobile() throws InterruptedException {
         initializeMobileDriverPortrait();
-//        openAndMaximiseBrowser();
+        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
         loginTesterPage(MOBILECHANNEL);
+    }
+
+    protected void clickFSIntroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateXMobilePortrait,
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateYMobilePortrait);
+    }
+
+    protected void clickFSOutroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateXMobilePortrait,
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateYMobilePortrait);
     }
 
 }

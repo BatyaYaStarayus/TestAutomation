@@ -13,7 +13,7 @@ public class DesktopGameActions extends GameActionsViaRequests {
 
     public void prepareToLaunchGameDesktop() throws InterruptedException {
         initializeDesktopDriver("Chrome");
-//        openAndMaximiseBrowser();
+        openAndMaximiseBrowser();
         getPage();
         loginAdminPage();
         loginTesterPage(DESKTOPCHANNEL);
@@ -49,15 +49,15 @@ public class DesktopGameActions extends GameActionsViaRequests {
 
     protected void changePagesAndMakeScreenShotsFSS(int pagesAmount, int timeoutSeconds) throws IOException, InterruptedException {
         for (int i = 0; i < pagesAmount; i++) {
-            Thread.sleep(100*timeoutSeconds);
             makeScreenShot("FSS/Page" + (i + 1) );
+            Thread.sleep(1000*timeoutSeconds);
         }
     }
 
     protected void changePagesAndMakeScreenShotsPaytable(int pagesAmount) throws IOException, InterruptedException {
         for (int i = 0; i < pagesAmount; i++) {
-            showNextPagePaytable();
             makeScreenShot("Paytable/Page" + (i + 1) );
+            showNextPagePaytable();
         }
     }
 
@@ -132,6 +132,18 @@ public class DesktopGameActions extends GameActionsViaRequests {
 
     protected void clickSpinButton (int positionX, int positionY) {
         clickOnElementByCoordinates(positionX, positionY);
+    }
+
+    protected void clickFSIntroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateXDesktop,
+                GameElementsCoordinates.FSIntroContinueButtonCoordinateYDesktop);
+    }
+
+    protected void clickFSOutroButton() {
+        clickOnElementByCoordinates(
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateXDesktop,
+                GameElementsCoordinates.FSOutroContinueButtonCoordinateYDesktop);
     }
 
 }

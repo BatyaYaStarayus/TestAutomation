@@ -77,24 +77,16 @@ public class BasicBrowserActions {
     }
 
     protected void initializeMobileDriver (String device) {
-
         mobileEmulation.put("deviceName", device);
         chromeOptions.put("mobileEmulation", mobileEmulation);
         System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
         capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-//        TODO try iOS and safari
-//        capabilities.setCapability(CapabilityType.BROWSER_NAME, "iOS");
-//        capabilities.setCapability(CapabilityType.VERSION, "10.0");
-
         driver = new ChromeDriver(capabilities);
 
         initializeJSExecutor();
-
-        System.out.println("Mobile driver initialized");
-
-    }
+}
 
     protected void initializeMobileDriverPortrait() {
         initializeMobileDriver(PORTRAITMOBILEDEVICE);
@@ -107,9 +99,9 @@ public class BasicBrowserActions {
 
 //    Browser actions
 
-//    protected void openAndMaximiseBrowser() {
-//        driver.manage().window().maximize();
-//    }
+    protected void openAndMaximiseBrowser() {
+        driver.manage().window().maximize();
+    }
 
     protected void getPage() {
         String pageURL = System.getProperty("Environment");
@@ -141,6 +133,6 @@ public class BasicBrowserActions {
     }
 
     protected void executeJSScript(String JSscript) {
-        js.executeScript("return" + JSscript);
+        js.executeScript(JSscript);
     }
 }

@@ -30,8 +30,6 @@ public class MobileGameActions extends GameActionsViaRequests{
 
     protected void openSpinSettings() throws InterruptedException {
         clickOnElementByClassName("interface-settingsMenu_child_spinSettings_uri");
-
-        Thread.sleep(TIMEOUT*5);
     }
 
     protected void openBetSettings() {

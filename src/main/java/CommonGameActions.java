@@ -1,15 +1,8 @@
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 /**
  * Created by ivan.kozlov on 17.02.2017.
@@ -20,7 +13,7 @@ public class CommonGameActions extends JMXActions {
     private Map<String, String> eventsMap = new HashMap<>();
     private Map<String, String> gettersMap = new HashMap<>();
 
-    protected final String[] BIGWINTYPES = {"BigWin", "MegaWin", "SuperNegaWin"};
+    protected final String[] BIGWINTYPES = {"BigWin", "MegaWin", "SuperMegaWin"};
 
     public CommonGameActions() {
         super();
@@ -49,14 +42,11 @@ public class CommonGameActions extends JMXActions {
     protected void waitGameLoaded() throws Exception {
         this.waitFor("gameLoaded");
 //        added timeout for FSS appearance
-        Thread.sleep(TIMEOUT*10);
     }
 
     protected void waitFSIntroAppears() throws Exception {
-        System.out.println(":)");
         this.waitFor("enteringFreeSpinIntroState");
         Thread.sleep(TIMEOUT);
-        System.out.println(":|");
     }
 
     protected void waitFSIntoDisappears() throws Exception {
@@ -111,7 +101,7 @@ public class CommonGameActions extends JMXActions {
         eventsMap.put("leavingFreeSpinOutroState", "notify:freeSpinOutro.closed");
         eventsMap.put("enteringBigWinState", "notify:stateHandler.enteringBigWinState");
         eventsMap.put("enteringWildAnimationState", "notify:stateHandler.enteringWildAnimationState");
-        eventsMap.put("spinStarted", "request:spin.startSpin");
+        eventsMap.put("spinStarted", "notify:spin.spinAnimationStarted");
     }
 
     protected void clickToEnableSounds () throws InterruptedException {
@@ -164,14 +154,6 @@ public class CommonGameActions extends JMXActions {
         int betInCurrency = getBetInCurrency();
 
         return balanceInCurrency - betInCurrency;
-    }
-
-    protected void clickFSIntroButton (int positionX, int positionY) {
-        clickOnElementByCoordinates(positionX, positionY);
-    }
-
-    protected void clickFSOutroButton(int positionX, int positionY) {
-        clickOnElementByCoordinates(positionX, positionY);
     }
 
     protected void skipGameAnimations() {
